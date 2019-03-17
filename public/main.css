@@ -1,0 +1,8 @@
+fieldset{
+    padding: 20px;
+    margin: 20px;
+    color:blue;
+    border-radius: 2%;
+    width: 50%;
+    max-width: 100%;
+}

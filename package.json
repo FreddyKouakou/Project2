@@ -9,6 +9,8 @@
   "author": "Freddy Kouakou",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "pg": "^7.9.0"
   }
 }
