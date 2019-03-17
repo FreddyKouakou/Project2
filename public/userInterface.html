@@ -12,12 +12,12 @@
     <fieldset>
         <legend>User Information</legend>
         <form action="createUser" method="GET"> <!-- Will be changed to POST soon --> 
-            <p>First Name: <input name="first_name" type="text"></p>
-            <p>Last Name: <input name="last_name" type="text"></p>
-            <p>User Name: <input name="user_name" type="text"></p>
-            <p>Phone Number: <input name="phone_number" type="tel"></p>
-            <p>Password: <input name="pass_word" type="password"></p>
-            <input type="submit" value="Sumit">
+            <p>First Name: <input required name="first_name" type="text"></p>
+            <p>Last Name: <input required name="last_name" type="text"></p>
+            <p>User Name: <input required name="user_name" type="text"></p>
+            <p>Phone Number: <input required name="phone_number" type="tel"></p>
+            <p>Password: <input required name="pass_word" type="password"></p>
+            <input id="sub" type="submit" value="Sumit">
         </form>
     </fieldset>
 </body>

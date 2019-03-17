@@ -1,8 +1,52 @@
-fieldset{
-    padding: 20px;
-    margin: 20px;
-    color:blue;
-    border-radius: 2%;
-    width: 50%;
-    max-width: 100%;
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+form{
+    border-radius: 3px
+}
+fieldset{
+    border-radius: 10px;
+}
+fieldset legend{
+    color: blue;
+    border-radius: 4px;
+
+}
+form input{
+  display: block;
+  font-size: 1rem;
+  border: solid 1px #999;
+  border-radius: 4px;
+  padding: .75rem;
+  background-color: whitesmoke;
+  width: 10%;
+  max-width: 20rem;  
+}
+form select{
+    display: block;
+    font-size: 1rem;
+    border: solid 1px #999;
+    border-radius: 4px;
+    padding: .75rem;
+    background-color: whitesmoke;
+    width: 100%;
+    max-width: 20rem;  
+}
+#sub{
+    font-size: 1rem;
+    border: solid 1px #999;
+    border-radius: 4px;
+    padding: .75rem;
+    background-color: royalblue;
+    width: 10%;
+    max-width: 20rem;  
+}
+p{
+    color: #000;
+    }
+    h3{
+        background:lightblue;
+        color: red;
+        padding: 10px;
+    }
+    }
