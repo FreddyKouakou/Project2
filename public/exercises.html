@@ -5,17 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Exercises</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- <script src="exercises.js"></script> -->
+    <script src="exercises.js"></script>
     
 </head>
 <body>
     <h2>Quiz</h2>
+    <div id="startBtn">
+        <button onclick="startButton()">START</button>
+    </div>
     <p id="questions"></p>
-    <input type="radio" id="a"> <p id="answera"></p>
-    <input type="radio" id="b"> <p id="answerb"></p>
-    <input type="radio" id="c"><p id="answerc"></p>
-    <button onclick="exercises(1)">1</button>
+    <p id="answera"></p>
+    <p id="answerb"></p>
+    <p id="answerc"></p>
+    <div id="submitAnswers"></div>
+    <div id="correctAnswers"></div>
+    <div id="questionNumbers"></div>
+
 </body>
 </html>

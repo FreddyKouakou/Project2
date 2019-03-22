@@ -43,10 +43,12 @@ form select{
 }
 p{
     color: #000;
-    }
+}
     h3{
         background:lightblue;
         color: red;
         padding: 10px;
     }
-    }
+    /* .navbar{
+        align-self: auto;
+    } */
