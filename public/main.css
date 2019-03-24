@@ -6,6 +6,7 @@ form{
 }
 fieldset{
     border-radius: 10px;
+    position: relative;
 }
 fieldset legend{
     color: blue;
@@ -27,7 +28,7 @@ form select{
     font-size: 1rem;
     border: solid 1px #999;
     border-radius: 4px;
-    padding: .75rem;
+    padding: 10rem;
     background-color: whitesmoke;
     width: 100%;
     max-width: 20rem;  
@@ -49,6 +50,37 @@ p{
         color: red;
         padding: 10px;
     }
-    /* .navbar{
+    .navbar{
         align-self: auto;
-    } */
+        background-color: rgb(0, 255, 85);
+        display: block;
+        padding: 10px;
+        float: left;
+        text-align:left;
+    }
+   .active {border-bottom: 4px solid black);}
+
+   hr{
+       background-color: solid green;
+       lighting-color: green;
+}
+/* ID selectors */
+#header
+{
+    margin: 10px 5px 10px 5px;
+    padding: 2em;
+    color: #fff;
+    background:orange;
+}
+#float_right{
+    float: right;
+    margin: 10px 5px 10px 5px;
+}
+
+#footer
+{
+    padding: 2em;
+    color: #fff;
+    background: orange;
+    text-align: center;
+}

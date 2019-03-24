@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,20 +9,40 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="exercises.js"></script>
-    
-</head>
-<body>
-    <h2>Quiz</h2>
-    <div id="startBtn">
-        <button onclick="startButton()">START</button>
-    </div>
-    <p id="questions"></p>
-    <p id="answera"></p>
-    <p id="answerb"></p>
-    <p id="answerc"></p>
-    <div id="submitAnswers"></div>
-    <div id="correctAnswers"></div>
-    <div id="questionNumbers"></div>
 
+</head>
+
+<body>
+    <header id="header">
+        <nav>
+            <a href="userInterface.html"> Sign Up</a>
+            <a href="signin.html">Sign In</a>
+            <a id="float_right" href="homepage.html">Home</a>
+            <a id="float_right" href="about.html">About</a>
+            <a href="lessons.html">Lesson</a>
+            <a class="active" href="exercises.html">Exercises</a>
+            <a id="float_right" href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Quiz</h1>
+        <h3>Click the START button to take the Quiz</h3>
+        <p>Bonne Chance!</p>
+        <div id="startBtn">
+            <button onclick="startButton()">START</button>
+        </div>
+        <p id="questions"></p>
+        <p id="answera"></p>
+        <p id="answerb"></p>
+        <p id="answerc"></p>
+        <div id="submitAnswers"></div>
+        <div id="correctAnswers"></div>
+        <div id="questionNumbers"></div>
+    </main>
+    <!--Footer-->
+    <footer id="footer">
+        &copy; 2019 &bull; Freddy Kouakou &bull; kou17001@byui.edu
+    </footer>
 </body>
+
 </html>

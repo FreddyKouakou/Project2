@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
+
 <body>
+    <header id="header">
+        <nav>
+            <nav>
+                <a class="active" href="userInterface.html"> Sign Up</a>
+                <a href="signin.html">Sign In</a>
+                <a href="lessons.html">Lesson</a>
+                <a href="exercises.html">Exercises</a>
+                
+                <a id="float_right" href="homepage.html">Home</a>
+                <a  id="float_right" href="about.html">About</a>
+                <a id="float_right" href="contact.html">Contact</a>
+            </nav>
+    </header>
+<hr>
+<main>
     <fieldset>
         <legend>Sign In</legend>
-    <form action="signin" method="POST">
-        <input id="#" type="text" name="username" placeholder="username">
-        <br>
-        <input type="password" name="password" placeholder="password">
-        <br>
-        <input type="submit" value="Sign In" name="signin">
-    </fieldset>
-    </form>
+        <form action="signin" method="POST">
+            <input id="input" type="text" name="username" placeholder="username">
+            <br>
+            <input id="input" type="password" name="password" placeholder="password">
+            <br>
+            <input id="sub" type="submit" value="Sign In" name="signin">
+        </form>
+     </fieldset>
+    
+</main>
+<hr>
+    <!--Footer-->
+    <footer id="footer">
+            &copy; 2019 &bull; Freddy Kouakou &bull; kou17001@byui.edu
+        </footer>
 </body>
+
 </html>

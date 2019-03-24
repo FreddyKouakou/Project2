@@ -1,3 +1,7 @@
+/**
+ * Function: exercises
+ * Description: This function 
+ */
 function exercises(questionNumberValue){
     //call web service to provide the necessary information from the database
     query = {questionNumber : questionNumberValue}

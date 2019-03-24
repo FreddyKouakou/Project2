@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        
+
 </head>
+
 <body>
-    <fieldset>
-        <legend>User Information</legend>
-        <form action="createUser" method="GET"> <!-- Will be changed to POST soon --> 
-            <p>First Name: <input required name="first_name" type="text"></p>
-            <p>Last Name: <input required name="last_name" type="text"></p>
-            <p>User Name: <input required name="user_name" type="text"></p>
-            <p>Phone Number: <input required name="phone_number" type="tel"></p>
-            <p>Password: <input required name="pass_word" type="password"></p>
-            <input id="sub" type="submit" value="Sumit">
-        </form>
-    </fieldset>
+    <header id="header">
+        <nav>
+            <a class="active" href="userInterface.html"> Sign Up</a>
+            <a href="signin.html">Sign In</a>
+            <a id="float_right" href="homepage.html">Home</a>
+            <a  id="float_right" href="about.html">About</a>
+            <a href="lessons.html">Lesson</a>
+            <a href="exercises.html">Exercises</a>
+            <a id="float_right" href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <fieldset>
+            <legend>User Information</legend>
+            <form action="createUser" method="GET">
+                <!-- Will be changed to POST soon -->
+                <p>First Name: <input required name="first_name" type="text"></p>
+                <p>Last Name: <input required name="last_name" type="text"></p>
+                <p>User Name: <input required name="user_name" type="text"></p>
+                <p>Phone Number: <input required name="phone_number" type="tel"></p>
+                <p>Password: <input required name="pass_word" type="password"></p>
+                <input id="sub" type="submit" value="Sumit">
+            </form>
+        </fieldset>
+    </main>
+<hr>
+    <!--Footer-->
+    <footer id="footer">
+        &copy; 2019 &bull; Freddy Kouakou &bull; kou17001@byui.edu
+    </footer>
 </body>
+
 </html>
