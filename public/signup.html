@@ -8,13 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="signup.js"></script>
 
 </head>
 
 <body>
     <header id="header">
         <nav>
-            <a class="active" href="userInterface.html"> SignUp</a>
+            <a class="active" href="signup.html"> SignUp</a>
             <a href="signin.html">SignIn</a>
             <a id="float_right" href="homepage.html">Home</a>
             <a  id="float_right" href="about.html">About</a>
@@ -26,15 +27,14 @@
     <main>
         <fieldset>
             <legend>User Information</legend>
-            <form action="createUser" method="GET">
                 <!-- Will be changed to POST soon -->
-                <p>First Name: <input required name="first_name" type="text"></p>
-                <p>Last Name: <input required name="last_name" type="text"></p>
-                <p>User Name: <input required name="user_name" type="text"></p>
-                <p>Phone Number: <input required name="phone_number" type="tel"></p>
-                <p>Password: <input required name="pass_word" type="password"></p>
-                <input id="sub" type="submit" value="Sumit">
-            </form>
+                <p id="signUpData"></p>
+                <p>First Name: <input id="firstName" required name="first_name" type="text"></p>
+                <p>Last Name: <input id="lastName" required name="last_name" type="text"></p>
+                <p>User Name: <input id="userName" required name="user_name" type="text"></p>
+                <p>Phone Number: <input id="phoneNumber" required name="phone_number" type="tel"></p>
+                <p>Password: <input id="passWord" required name="pass_word" type="password"></p>
+                <button id="submitBtn" onclick="signupButton()">Sign Up</button>
         </fieldset>
     </main>
 <hr>
