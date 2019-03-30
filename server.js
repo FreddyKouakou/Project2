@@ -92,18 +92,23 @@ app.post("/signin", (req, res) => {
             console.log("Error getting the user name" + err)
 
         } else {
-            //setting session
-            bcrypt.compare(userPassWord, result.rows[0].pass_word, function (err, resMatch) {
-                if (resMatch) {
-                    // Passwords match
-                    req.session.userName = userSignIn
-                    res.send({ toRedirect: true });
-                } else {
-                    // Passwords don't match
-                    res.send({ errMessage: "Wrong Password", toRedirect: false })
-                }
-            });
+            if (result.rows.length > 0) {
 
+                //setting session
+                bcrypt.compare(userPassWord, result.rows[0].pass_word, function (err, resMatch) {
+                    if (resMatch) {
+                        // Passwords match
+                        req.session.userName = userSignIn
+                        res.send({ toRedirect: true });
+                    } else {
+                        // Passwords don't match
+                        res.send({ errMessage: "Wrong Password", toRedirect: false })
+                    }
+                });
+
+            }else{
+                res.send({errMessage: "Please verify you user name is correctly spelt", toRedirect: false})
+            }
         }
     });
 
