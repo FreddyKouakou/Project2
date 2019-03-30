@@ -26,7 +26,7 @@ const pool = new Pool({ connectionString: dbUrl })
 
 
 //statics files path
-app.use(express.static("public")) //My html file
+app.use(express.static("public")) //My html files
 
 /**
  * This is the homepage route
@@ -48,7 +48,6 @@ app.post("/signUp", (req, res) => {
     var userName = req.body.userName;
     var phoneNumber = req.body.phoneNumber;
     var passWord = req.body.userPassWord;
-    
 
     var checkUserName = "SELECT users_name FROM user_table WHERE users_name = $1"
     pool.query(checkUserName, [userName], (err, result) => {
@@ -63,16 +62,17 @@ app.post("/signUp", (req, res) => {
                 var insertIntodb = "INSERT INTO user_table(first_name, last_name, users_name, phone_number, pass_word) VALUES($1, $2, $3, $4, $5) " //This insert the user's data in the variable $1...5 in the query
                 pool.query(insertIntodb, userInfo, (err, result) => {
 
-                    if (err) console.log("Didn't get the user info" + err);
+                    if (err) {
+                        console.log("Didn't get the user info" + err)
+                    }
                     else {
-                        console.log("User Account successfully created.")
-                        // res.redirect("signin.html")
+                        res.send({ toRedirect: true })
                     }
                 });
 
             });
         } else {
-            res.send("User name already exist")
+            res.send({ errMessage: userName + " already exist.", toRedirect: false })
         }
     })
 
@@ -88,14 +88,25 @@ app.post("/signin", (req, res) => {
     var userPassWord = req.body.userPassWord;
     var userInfoArray = [userSignIn];
     pool.query("SELECT pass_word FROM user_table WHERE users_name = $1", userInfoArray, (err, result) => {
-        if (err) console.log("Error getting the user name" + err)
-        var row = result.rows[0];
-        if (row.pass_word == userPassWord) {
-            res.redirect("exercises.html");
+        if (err) {
+            console.log("Error getting the user name" + err)
+
         } else {
-            res.send("Wrong Password")
+            //setting session
+            bcrypt.compare(userPassWord, result.rows[0].pass_word, function (err, resMatch) {
+                if (resMatch) {
+                    // Passwords match
+                    req.session.userName = userSignIn
+                    res.send({ toRedirect: true });
+                } else {
+                    // Passwords don't match
+                    res.send({ errMessage: "Wrong Password", toRedirect: false })
+                }
+            });
+
         }
     });
+
 });
 
 /******************************************************************************
@@ -130,6 +141,7 @@ app.get("/getUser/:users_name", (req, res) => {
         }
     });
 });
+
 /******************************************************************************
  * Function: GET()
  * Description: This function retrieve the questions and send it them to 
