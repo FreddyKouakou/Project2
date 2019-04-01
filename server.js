@@ -107,7 +107,7 @@ app.post("/signin", (req, res) => {
                 });
 
             }else{
-                res.send({errMessage: "Please verify you user name is correctly spelt", toRedirect: false})
+                res.send({errMessage: "Please verify your user name is correctly spelt", toRedirect: false})
             }
         }
     });

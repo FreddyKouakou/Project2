@@ -1,6 +1,30 @@
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+nav a{
+    display: block;
+    float: left;
+/*We're just setting up fonts settings here*/
+    font-family: sans-serif;
+    font-size: 20px;
+    color: white;
+/* Box Method Test AKA handicap
+    background-color: #17b0cf;
+    border: 1px solid #000; */
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+   /*Padding Our Box*/
+    /* padding-top: 20px;
+    
+    
+     */
+/*Let's remove the dumb link decoration*/
+    text-decoration: none;
+}
+nav a:hover{
+background-color: green;
+}
 form{
     border-radius: 3px
 }
@@ -10,20 +34,18 @@ fieldset{
 }
 fieldset legend{
     color: blue;
-    border-radius: 4px;
-
 }
-form input{
+input{
   display: block;
   font-size: 1rem;
   border: solid 1px #999;
   border-radius: 4px;
   padding: .75rem;
   background-color: whitesmoke;
-  width: 10%;
-  max-width: 20rem;  
+  width: 50%;
+  max-width: 20rem;   
 }
-form select{
+select{
     display: block;
     font-size: 1rem;
     border: solid 1px #999;
@@ -33,32 +55,31 @@ form select{
     width: 100%;
     max-width: 20rem;  
 }
-#sub{
+#submitBtn{
     font-size: 1rem;
     border: solid 1px #999;
     border-radius: 4px;
     padding: .75rem;
     background-color: royalblue;
-    width: 10%;
-    max-width: 20rem;  
+    width: 35%;
+    max-width: 10rem;  
 }
 p{
     color: #000;
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
 }
     h3{
         background:lightblue;
         color: red;
         padding: 10px;
     }
-    .navbar{
-        align-self: auto;
-        background-color: rgb(0, 255, 85);
-        display: block;
-        padding: 10px;
-        float: left;
-        text-align:left;
-    }
-   .active {border-bottom: 4px solid black);}
+
+   .active {
+       border-bottom: 4px solid white;
+       background: green;
+}
 
    hr{
        background-color: solid green;
@@ -69,12 +90,14 @@ p{
 {
     margin: 10px 5px 10px 5px;
     padding: 2em;
-    color: #fff;
+    /* color: #fff; */
     background:orange;
 }
 #float_right{
     float: right;
-    margin: 10px 5px 10px 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 #footer
@@ -92,3 +115,18 @@ i{
 h1{
     color:green;
 }
+.errMessage{
+    color: red;
+    background: #fff;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 25px;
+  }
+
+  #homeLink{
+      color: red;
+      background-color:blue;
+      padding: 10px;
+  }
