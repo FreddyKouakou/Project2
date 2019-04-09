@@ -1,29 +1,6 @@
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-nav a{
-    display: block;
-    float: left;
-/*We're just setting up fonts settings here*/
-    font-family: sans-serif;
-    font-size: 20px;
-    color: white;
-/* Box Method Test AKA handicap
-    background-color: #17b0cf;
-    border: 1px solid #000; */
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-bottom: 10px;
-   /*Padding Our Box*/
-    /* padding-top: 20px;
-    
-    
-     */
-/*Let's remove the dumb link decoration*/
-    text-decoration: none;
-}
-nav a:hover{
-background-color: green;
+    background-color: white;
 }
 form{
     border-radius: 3px
@@ -75,12 +52,6 @@ p{
         color: red;
         padding: 10px;
     }
-
-   .active {
-       border-bottom: 4px solid white;
-       background: green;
-}
-
    hr{
        background-color: solid green;
        lighting-color: green;
@@ -90,7 +61,6 @@ p{
 {
     margin: 10px 5px 10px 5px;
     padding: 2em;
-    /* color: #fff; */
     background:orange;
 }
 #float_right{
