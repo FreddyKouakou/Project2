@@ -21,7 +21,7 @@ app.use(session({
 
 // connect to postgres database
 const { Pool } = require('pg')
-const dbUrl = process.env.DATABASE_URL || 'postgres://postgres:Christ05442603221@localhost:5432/project2'
+const dbUrl = process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/freddy_english'
 const pool = new Pool({ connectionString: dbUrl })
 
 
@@ -164,6 +164,23 @@ app.get("/getQuestions/:question_id", (req, res) => {
     });
 });
 
+app.get('/lessons', (req, res) => {
+    res.render('lessons.ejs');
+});
+
+// retrieve lesson content from database
+app.get('/getLesson', (req, res) => {
+    var week = req.query.week;
+    var values = [week];
+    var sql = 'SELECT * FROM lessons WHERE id=$1';
+    pool.query(sql, values, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result.rows);
+        }
+    });
+});
 
 //Server
 app.set("port", (process.env.PORT || 8000))
