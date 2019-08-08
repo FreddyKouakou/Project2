@@ -20,6 +20,30 @@ function exercises(questionNumberValue){
 
         $("#submitAnswers").html(`<button onClick="submitAnswers()">Submit Answer</button>`);
 }
+
+function getQuestion() {
+    $.get("getQuestion", function(response) {
+        var question = response.question;
+        $("#question").html(question);
+    });
+
+}
+
+function submitAnswer() {
+    var userResponse = $("#userResponse").val();
+    $.get("getAnswer", function(response) {
+        var answer = response.answer;
+        if (userResponse == answer) {
+            alert("Well done!");
+            $.get("incrementQuestion", function(data) {
+                console.log("Inside incrementQuestion");
+                getQuestion();
+            });
+        } else {
+            alert("Give it another try!");    
+        }
+    });
+}
 /**
  * Submit Answers
  */
@@ -42,5 +66,5 @@ function submitAnswers(){
  */
 function startButton(){
     $("#startBtn").html("");
-    exercises(1);
+    getQuestion();
 }

@@ -36,6 +36,8 @@ app.get("/", (req, res) => {
     res.redirect("homepage.html")
 })
 
+
+
 /******************************************************************************
 * Function:app.get("/createUser")
 * Description: This block insert the user's information in the Database
@@ -152,21 +154,71 @@ app.get("/getUser/:users_name", (req, res) => {
  * Description: This function retrieve the questions and send it them to 
  * the  browser.(Querying questions form the questions table)
  ******************************************************************************/
-app.get("/getQuestions/:question_id", (req, res) => {
-    var getQuestion = req.params.question_id
-    var user_question = [getQuestion]
-    pool.query("SELECT *FROM questions WHERE question_id = $1", user_question, (err, result) => {
-        if (err) console.log("Still given troubles" + err)
-        else {
-            var displayQuestion = result.rows
-            res.send(displayQuestion)
-        }
-    });
+app.get("/getQuestions", (req, res) => {
+    var questions = session.questions;
+    res.send({questions: questions});
 });
 
 app.get('/lessons', (req, res) => {
     res.render('lessons.ejs');
 });
+
+app.get('/quiz', (req, res) => {
+    var quiz = 1; // change to query
+    var values = [quiz];
+    pool.query("SELECT * FROM questions WHERE quiz=$1", values, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            session.questions = result.rows;
+            session.questionNumber = 0;
+            res.render('exercises.ejs');
+        }
+    });
+    
+});
+
+app.get('/matching', (req, res) => {
+    var quiz = 2; // change to query
+    var values = [quiz];
+    pool.query("SELECT * FROM questions WHERE quiz=$1", values, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            session.questions = result.rows;
+            session.questionNumber = 0;
+            res.render('matching.ejs');
+        }
+    });
+    
+});
+
+app.get('/getQuestion', (req, res) => {
+    var questionNumber = session.questionNumber;
+    console.log("getQuestion: " + questionNumber);
+    var questions = session.questions;
+    var question = questions[questionNumber].question;
+    question = {question: question};
+    res.send(question);
+});
+
+app.get('/getAnswer', (req, res) => {
+    var questionNumber = session.questionNumber;
+    console.log("getAnswer: " + questionNumber);
+    var questions = session.questions;
+    var answer = questions[questionNumber].answer;
+    answer = {answer: answer};
+    res.send(answer);
+});
+
+app.get('/incrementQuestion', (req, res) => {
+    session.questionNumber++;
+    console.log("incrementQuestion: " + session.questionNumber);
+    res.send("Text");
+});
+
+
+
 
 // retrieve lesson content from database
 app.get('/getLesson', (req, res) => {

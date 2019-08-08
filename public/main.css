@@ -100,3 +100,7 @@ table, th, td {
       background-color:blue;
       padding: 10px;
   }
+
+#matchingTable {
+    padding: 20px;
+}
