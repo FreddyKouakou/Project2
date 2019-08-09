@@ -101,6 +101,6 @@ table, th, td {
       padding: 10px;
   }
 
-#matchingTable {
+.matchingTable {
     padding: 20px;
 }

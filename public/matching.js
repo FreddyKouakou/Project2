@@ -7,17 +7,40 @@ function startButton() {
             sortedWords.push(questions[i].answer);
         }
         sortedWords.sort();
-        var dropDownHtml = "<select id='matchingTable'>";
+        var dropDownHtml = "<option></option>";
         for (let i = 0; i < sortedWords.length; i++) {
             dropDownHtml += "<option>" + sortedWords[i] + "</option>";
         }
         dropDownHtml += "</select>";
         matchingTable = "<table>";
         for (let i = 0; i < questions.length; i++) {
-            matchingTable += "<tr><td><img src='images/" + questions[i].answer + ".png'></td><td>" + dropDownHtml + "</td></tr>"; 
+            matchingTable += "<tr><td><img src='images/" + questions[i].answer + ".png'></td><td>" + "<select class='matchingTable' id='" + i +"'>" + dropDownHtml + "</td></tr>"; 
         }
         matchingTable += "</table>";
+        matchingTable += "<button onclick='submitAnswers()' id='submitBtn'>Submit</button>";
         $("#dropdowns").html(matchingTable);
         
     });
+}
+
+function submitAnswers() {
+    var message = "Are you sure you want to submit? Click OK or Cancel.";
+    if (confirm(message)) {
+        console.log("Confirmed!");
+        $.get("getQuestions", function(response) {
+            var questions = response.questions;
+            console.log(questions);
+            var score = 0;
+            for (let i = 0; i < questions.length; i++) {
+                var answer = questions[i].answer;
+                var userChoice = $("#" + i).find(":selected").text();
+                if (userChoice == answer) {
+                    ++score;
+                }
+            }
+            console.log("Your score is: " + score);
+        });
+    } else {
+        console.log("Canceled.");
+    }
 }

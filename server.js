@@ -217,7 +217,19 @@ app.get('/incrementQuestion', (req, res) => {
     res.send("Text");
 });
 
+app.get('/grades', (req, res) => {
+    res.render('grades.ejs');
+});
 
+app.get('/getGrades', (req, res) => {
+    var values = [1]; // change to session 
+    var sql = "SELECT * FROM grades WHERE user_id=$1";
+    pool.query(sql, values, function(err, result) {
+        var grades = result.rows;
+        console.log(grades);
+        res.send({grades: grades});
+    });
+});
 
 
 // retrieve lesson content from database
