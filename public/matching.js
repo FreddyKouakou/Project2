@@ -26,7 +26,6 @@ function startButton() {
 function submitAnswers() {
     var message = "Are you sure you want to submit? Click OK or Cancel.";
     if (confirm(message)) {
-        console.log("Confirmed!");
         $.get("getQuestions", function(response) {
             var questions = response.questions;
             console.log(questions);
@@ -38,7 +37,11 @@ function submitAnswers() {
                     ++score;
                 }
             }
-            console.log("Your score is: " + score);
+            $.get("updateScore", {grade: score}, function(response) {
+                if (response.success) {
+                    console.log('Grade is recorded in database!');
+                }
+            });
         });
     } else {
         console.log("Canceled.");

@@ -156,6 +156,7 @@ app.get("/getUser/:users_name", (req, res) => {
  ******************************************************************************/
 app.get("/getQuestions", (req, res) => {
     var questions = session.questions;
+    console.log(questions);
     res.send({questions: questions});
 });
 
@@ -172,7 +173,7 @@ app.get('/quiz', (req, res) => {
         } else {
             session.questions = result.rows;
             session.questionNumber = 0;
-            res.render('exercises.ejs');
+            res.render('quiz1.ejs');
         }
     });
     
@@ -213,7 +214,6 @@ app.get('/getAnswer', (req, res) => {
 
 app.get('/incrementQuestion', (req, res) => {
     session.questionNumber++;
-    console.log("incrementQuestion: " + session.questionNumber);
     res.send("Text");
 });
 
@@ -226,22 +226,35 @@ app.get('/getGrades', (req, res) => {
     var sql = "SELECT * FROM grades WHERE user_id=$1";
     pool.query(sql, values, function(err, result) {
         var grades = result.rows;
-        console.log(grades);
         res.send({grades: grades});
     });
 });
 
-
-// retrieve lesson content from database
-app.get('/getLesson', (req, res) => {
-    var week = req.query.week;
-    var values = [week];
-    var sql = 'SELECT * FROM lessons WHERE id=$1';
+app.get("/updateScore", (req, res) => {
+    var grade = req.query.grade;
+    var quiz = 1; // change to session
+    var userId = 1; // change to session
+    var values = [grade, quiz, userId];
+    var sql = "UPDATE grades SET grade=$1 WHERE quiz=$2 AND user_id=$3";
     pool.query(sql, values, function(err, result) {
         if (err) {
             console.log(err);
         } else {
-            res.send(result.rows);
+            res.send({success: true});
+        }
+    });
+});
+
+app.get("/getAnswers", (req, res) => {
+    var quiz = 1; // change to session
+    var values = [quiz];
+    var sql = "SELECT question_number, answer FROM answers WHERE quiz=$1";
+    pool.query(sql, values, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            var answers = result.rows;
+            res.send({answers: answers});
         }
     });
 });

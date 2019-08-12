@@ -104,3 +104,16 @@ table, th, td {
 .matchingTable {
     padding: 20px;
 }
+
+#percentage {
+    padding-bottom: 20px;
+}
+
+#totalScore {
+    padding: 20px;
+}
+
+.paragraph {
+    display: inline;
+    width: 100px;
+}

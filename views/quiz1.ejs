@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="grades.js"></script>
+    <script src="quiz1.js"></script>
     <link rel="stylesheet" href="responav/resnavsmall.css">
     <link rel="stylesheet" href="responav/resnavmedium.css">
     <link rel="stylesheet" href="responav/resnavlarge.css">
@@ -34,18 +34,15 @@
   
     </header>
     <main>
-        <h1>Grades</h1>
-        <div id="percentage"></div>
-        <table>
-        <% for (let i = 1; i <= 14; i++) { %> 
-        <tr><td>Week <%=i %></td><td id='<%=i %>'></td><td id='<%=i %>total'></td></tr>
-        <% } %>
-        <%
-            
-        %>
-        </table>
-        <div id="totalScore"></div>
-        
+        <h1>Quiz</h1>
+        <div>Fill in the blanks and click the Submit button.</div>
+        <p>Hello. <input id="1" class="paragraph"> is your name?</p>
+        <p>Hi. My <input id="2" class="paragraph"> is Ana.</p>
+        <p>Could you spell that, please?</p>
+        <p>Ana, <input id="3" class="paragraph"> - N - <input id="4" class="paragraph"></p>
+        <p>Could you repeat that, please?</p>
+        <p><input id="5" class="paragraph"> - N - <input id="6" class="paragraph"></p> 
+        <button onclick="submitAnswers()">Submit</button>
     </main>
     <hr>
     <!--Footer-->
