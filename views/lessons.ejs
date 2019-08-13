@@ -36,9 +36,9 @@
           <% for (let i = 1; i <= 14; i++) { %>
           <tr>
             <td>Week <%=i %></td>
-            <td><a href="week1.pdf">Reading</a></td>
+            <td><a href="week<%=i %>.pdf">Reading</a></td>
             <td><a href="video1.mp4">Video</a></td>
-            <td><a href="quiz">Quiz</a></td>
+            <td><a href="quiz?qn=<%=i %>">Quiz</a></td>
           </tr>
           <% } %>
         </table>

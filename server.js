@@ -149,72 +149,15 @@ app.get("/getUser/:users_name", (req, res) => {
     });
 });
 
-/******************************************************************************
- * Function: GET()
- * Description: This function retrieve the questions and send it them to 
- * the  browser.(Querying questions form the questions table)
- ******************************************************************************/
-app.get("/getQuestions", (req, res) => {
-    var questions = session.questions;
-    console.log(questions);
-    res.send({questions: questions});
-});
-
 app.get('/lessons', (req, res) => {
     res.render('lessons.ejs');
 });
 
 app.get('/quiz', (req, res) => {
-    var quiz = 1; // change to query
-    var values = [quiz];
-    pool.query("SELECT * FROM questions WHERE quiz=$1", values, function(err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            session.questions = result.rows;
-            session.questionNumber = 0;
-            res.render('quiz1.ejs');
-        }
-    });
+     // change to query
+    var qn = req.query.qn;
+    res.render('quiz' + qn);
     
-});
-
-app.get('/matching', (req, res) => {
-    var quiz = 2; // change to query
-    var values = [quiz];
-    pool.query("SELECT * FROM questions WHERE quiz=$1", values, function(err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            session.questions = result.rows;
-            session.questionNumber = 0;
-            res.render('matching.ejs');
-        }
-    });
-    
-});
-
-app.get('/getQuestion', (req, res) => {
-    var questionNumber = session.questionNumber;
-    console.log("getQuestion: " + questionNumber);
-    var questions = session.questions;
-    var question = questions[questionNumber].question;
-    question = {question: question};
-    res.send(question);
-});
-
-app.get('/getAnswer', (req, res) => {
-    var questionNumber = session.questionNumber;
-    console.log("getAnswer: " + questionNumber);
-    var questions = session.questions;
-    var answer = questions[questionNumber].answer;
-    answer = {answer: answer};
-    res.send(answer);
-});
-
-app.get('/incrementQuestion', (req, res) => {
-    session.questionNumber++;
-    res.send("Text");
 });
 
 app.get('/grades', (req, res) => {
@@ -232,7 +175,7 @@ app.get('/getGrades', (req, res) => {
 
 app.get("/updateScore", (req, res) => {
     var grade = req.query.grade;
-    var quiz = 1; // change to session
+    var quiz = req.query.quiz;
     var userId = 1; // change to session
     var values = [grade, quiz, userId];
     var sql = "UPDATE grades SET grade=$1 WHERE quiz=$2 AND user_id=$3";
@@ -246,7 +189,7 @@ app.get("/updateScore", (req, res) => {
 });
 
 app.get("/getAnswers", (req, res) => {
-    var quiz = 1; // change to session
+    var quiz = req.query.quiz;
     var values = [quiz];
     var sql = "SELECT question_number, answer FROM answers WHERE quiz=$1";
     pool.query(sql, values, function(err, result) {

@@ -13,8 +13,8 @@ function submitAnswers() {
                 ++score;
             }
         }
-        $.get("updateScore", {grade: score}, function(response) {
-            console.log("Success");
+        $.get("updateScore", {grade: score, quiz: 1}, function(response) {
+            window.location.replace('grades')
         });
     });
 }

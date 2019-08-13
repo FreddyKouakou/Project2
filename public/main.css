@@ -116,4 +116,5 @@ table, th, td {
 .paragraph {
     display: inline;
     width: 100px;
+    padding: 10px;
 }
