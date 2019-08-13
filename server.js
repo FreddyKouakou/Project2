@@ -28,16 +28,6 @@ const pool = new Pool({ connectionString: dbUrl })
 //statics files path
 app.use(express.static("public")) //My html files
 
-/**
- * This is the homepage route
- */
-app.get("/", (req, res) => {
-
-    res.redirect("homepage.html")
-})
-
-
-
 /******************************************************************************
 * Function:app.get("/createUser")
 * Description: This block insert the user's information in the Database
@@ -149,8 +139,28 @@ app.get("/getUser/:users_name", (req, res) => {
     });
 });
 
-app.get('/lessons', (req, res) => {
+app.get('/', (req, res) => {
+    res.render('homepage.ejs');
+});
+
+app.get('/about', (req, res) => {
+    res.render('about.ejs');
+});
+
+app.get('/contact', (req, res) => {
+    res.render('contact.ejs');
+});
+
+app.get('/lesson', (req, res) => {
     res.render('lessons.ejs');
+});
+
+app.get('/signin', (req, res) => {
+    res.render('signin.ejs');
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signup.ejs');
 });
 
 app.get('/quiz', (req, res) => {
