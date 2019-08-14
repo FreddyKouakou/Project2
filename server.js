@@ -201,13 +201,64 @@ app.get("/updateScore", (req, res) => {
 app.get("/getAnswers", (req, res) => {
     var quiz = req.query.quiz;
     var values = [quiz];
-    var sql = "SELECT question_number, answer FROM answers WHERE quiz=$1";
+    var sql = "SELECT question_number, answer FROM answers WHERE quiz=$1 ORDER BY question_number";
     pool.query(sql, values, function(err, result) {
         if (err) {
             console.log(err);
         } else {
             var answers = result.rows;
             res.send({answers: answers});
+        }
+    });
+});
+
+app.get("/getSubmitStatus", (req, res) => {
+    var quiz = req.query.quiz;
+    var values = [quiz];
+    var sql = "SELECT submit FROM quizzes WHERE quiz=$1";
+    pool.query(sql, values, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            var submit = result.rows[0].submit;
+            res.send({submit: submit});
+        }
+    });
+});
+
+app.get("/updateSubmit", (req, res) => {
+    var quiz = req.query.quiz;
+    var values = [quiz];
+    var sql = "UPDATE quizzes SET submit=TRUE WHERE quiz=$1";
+    pool.query(sql, values, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send({success: true});
+        }
+    });
+});
+
+app.get("/insertUserResponses", (req, res) => {
+    var quiz = req.query.quiz;
+    var userId = 1; // change to session
+    var responses = req.query.responses;
+    var sql = "INSERT INTO user_responses(response, question_number, quiz, user_id) VALUES";
+    for (let i = 0; i < responses.length; i++) {
+        sql += "('" + responses[i] + "', " + (i + 1) + ", " + quiz + ", " + userId + ")";
+        if (i == responses.length - 1) {
+            sql += ";"
+        } else {
+            sql += ", ";
+        }
+    }
+    console.log(sql);
+
+    pool.query(sql, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send({success: true});
         }
     });
 });
