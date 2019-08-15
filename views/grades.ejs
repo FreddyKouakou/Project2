@@ -1,3 +1,16 @@
+<%
+  var maxScores = [6, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var totalMaxScore = 0;
+  for (let i = 0; i < maxScores.length; i++) {
+      totalMaxScore += maxScores[i];
+  }
+  var totalScore = 0;
+  for (let i = 0; i < grades.length; i++) {
+      totalScore += grades[i].grade;
+  }
+
+  var percentage = (totalScore * 100.0 / totalMaxScore).toFixed(2);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -35,16 +48,13 @@
     </header>
     <main>
         <h1>Grades</h1>
-        <div id="percentage"></div>
+        <p>Percentage: <%=percentage %></p>
         <table>
-        <% for (let i = 1; i <= 14; i++) { %> 
-        <tr><td>Week <%=i %></td><td id='<%=i %>'></td><td id='<%=i %>total'></td></tr>
+        <% for (let i = 0; i < 14; i++) { %> 
+        <tr><td>Week <%=i + 1 %></td><td><%=grades[i].grade %></td><td><%=maxScores[i] %></td></tr>
         <% } %>
-        <%
-            
-        %>
         </table>
-        <div id="totalScore"></div>
+        <p>Total Score: <%=totalScore %></p>
         
     </main>
     <hr>

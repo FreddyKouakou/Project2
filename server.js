@@ -164,14 +164,18 @@ app.get('/signup', (req, res) => {
 });
 
 app.get('/quiz', (req, res) => {
-     // change to query
     var qn = req.query.qn;
     res.render('quiz' + qn);
     
 });
 
 app.get('/grades', (req, res) => {
-    res.render('grades.ejs');
+    var userId = 1; // change to session
+    var values = [userId];
+    var sql = "SELECT grade FROM grades WHERE user_id=$1 ORDER BY quiz";
+    pool.query(sql, values, function(err, result) {
+        res.render('grades.ejs', {grades: result.rows});
+    });
 });
 
 app.get('/getGrades', (req, res) => {
@@ -243,11 +247,11 @@ app.get("/insertUserResponses", (req, res) => {
     var quiz = req.query.quiz;
     var userId = 1; // change to session
     var responses = req.query.responses;
-    var sql = "INSERT INTO user_responses(response, question_number, quiz, user_id) VALUES";
+    var sql = "INSERT INTO user_responses(response, question_number, quiz, user_id) VALUES ";
     for (let i = 0; i < responses.length; i++) {
         sql += "('" + responses[i] + "', " + (i + 1) + ", " + quiz + ", " + userId + ")";
         if (i == responses.length - 1) {
-            sql += ";"
+            sql += ";";
         } else {
             sql += ", ";
         }
