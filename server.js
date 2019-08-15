@@ -164,9 +164,8 @@ app.get('/signup', (req, res) => {
 });
 
 app.get('/quiz', (req, res) => {
-    var qn = req.query.qn;
-    res.render('quiz' + qn);
-    
+    var quiz = req.query.qn;
+    res.render('quiz.ejs', {quiz: quiz});
 });
 
 app.get('/grades', (req, res) => {
@@ -247,9 +246,9 @@ app.get("/insertUserResponses", (req, res) => {
     var quiz = req.query.quiz;
     var userId = 1; // change to session
     var responses = req.query.responses;
-    var sql = "INSERT INTO user_responses(response, question_number, quiz, user_id) VALUES ";
+    var sql = "UPDATE user_responses SET ";
     for (let i = 0; i < responses.length; i++) {
-        sql += "('" + responses[i] + "', " + (i + 1) + ", " + quiz + ", " + userId + ")";
+        sql += "response='" + responses[i] + "' WHERE question_number=" + (i + 1) + " AND quiz=" + quiz + " AND user_id=" + userId;
         if (i == responses.length - 1) {
             sql += ";";
         } else {

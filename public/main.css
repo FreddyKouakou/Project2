@@ -118,3 +118,9 @@ table, th, td {
     width: 100px;
     padding: 10px;
 }
+
+.quiz5 {
+    display: inline;
+    width: 170px;
+    padding: 10px;
+}

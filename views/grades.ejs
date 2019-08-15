@@ -1,5 +1,5 @@
 <%
-  var maxScores = [6, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var maxScores = [6, 31, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   var totalMaxScore = 0;
   for (let i = 0; i < maxScores.length; i++) {
       totalMaxScore += maxScores[i];
@@ -48,7 +48,7 @@
     </header>
     <main>
         <h1>Grades</h1>
-        <p>Percentage: <%=percentage %></p>
+        <p>Percentage: <%=percentage %>%</p>
         <table>
         <% for (let i = 0; i < 14; i++) { %> 
         <tr><td>Week <%=i + 1 %></td><td><%=grades[i].grade %></td><td><%=maxScores[i] %></td></tr>

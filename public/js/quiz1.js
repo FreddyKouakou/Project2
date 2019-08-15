@@ -19,7 +19,7 @@ function submitAnswers() {
             responses[i] = $('#' + (i + 1)).val();
         }
 
-        $('#submitBtn').remove();
+        // $('#submitBtn').remove();
         for (let i = 0; i < answers.length; i++) {
             var answer = answers[i].answer;
             if (responses[i] == answer) {
@@ -30,11 +30,15 @@ function submitAnswers() {
             }
         }
 
-        if (responses.length > 0) {
-            $.get("insertUserResponses", {quiz: 1, responses: responses}, function(response) {
+        $.get("updateScore", {quiz: 1, grade: score}, function(response) {
 
-            });
-        }
+        });
+
+        // if (responses.length > 0) {
+        //     $.get("insertUserResponses", {quiz: 1, responses: responses}, function(response) {
+
+        //     });
+        // }
 
         // $.get("updateSubmit", {quiz: 1}, function(response) {
         //     if (response.success) {

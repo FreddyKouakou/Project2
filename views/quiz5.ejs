@@ -1,0 +1,45 @@
+<%
+    var questions = ["is it?", "is his name?", "door is it?", "does it start?", "is he coming?", "is she?", "is Joseph?", "are you?", "do you need?"];
+    var answers = ["It's down the hall.", "His name is Mr. Kimball.", "The first door.", "It starts right now.", "He's coming today.", "She's fine.", "Joseph is fine.", "We are here.", "I need a book."];
+%>
+
+<h1>Quiz 5</h1>
+<table>
+    <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>What is asked for</th>
+    </tr>
+<% for (let i = 0; i < 9; i++) { %>
+    <tr>
+    <td>
+    <select id="0" class="paragraph">
+        <option></option>
+        <option>Who</option>
+        <option>When</option>
+        <option>Where</option>
+        <option>Which</option>
+        <option>Why</option>
+        <option>How</option>
+        <option>What</option>
+    </select>
+    <%=questions[i] %>
+    </td>
+    <td><%=answers[i] %></td>
+    <td>
+    <select id="1" class="quiz5">
+        <option></option>
+        <option>Person</option>
+        <option>Time</option>
+        <option>Place</option>
+        <option>Choice</option>
+        <option>Reason</option>
+        <option>Explanation</option>
+        <option>Process</option>
+        <option>Condition</option>
+        <option>Item Description</option>
+    </select>
+    </td>
+    </tr>
+<% } %>
+</table>

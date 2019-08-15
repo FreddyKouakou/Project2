@@ -33,11 +33,14 @@ function submitAnswers() {
                 var userChoice = $("#" + i).find(":selected").text();
                 if (userChoice == answer) {
                     ++score;
+                    $('#' + i).css('border-color', 'green');
+                } else {
+                    $('#' + i).css('border-color', 'red');
                 }
             }
             $.get("updateScore", {grade: score, quiz: 2}, function(response) {
                 if (response.success) {
-                    window.location.replace('grades');
+                    console.log("Score Updated!")
                 }
             });
         });
