@@ -14,7 +14,7 @@
 <% for (let i = 0; i < 9; i++) { %>
     <tr>
     <td>
-    <select id="<%=i %>" class="paragraph">
+    <select id="<%=i * 2 %>" class="paragraph">
         <option></option>
         <option value="Who">Who</option>
         <option value="When">When</option>
@@ -28,7 +28,7 @@
     </td>
     <td><%=answers[i] %></td>
     <td>
-    <select id="<%=i + 9 %>" class="quiz5">
+    <select id="<%=i * 2 + 1 %>" class="long">
         <option></option>
         <option value="Person">Person</option>
         <option value="Time">Time</option>
