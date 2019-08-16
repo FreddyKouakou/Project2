@@ -1,24 +1,22 @@
-function submitAnswers() {
+function submitAnswers(quizNumber) {
     var message = "Are you sure you want to submit? Click OK or Cancel.";
     if (confirm(message)) {
-        $.get("getAnswers", {quiz: 4}, function(response) {
+        $.get("getAnswers", {quiz: quizNumber}, function(response) {
             var answers = response.answers;
             var score = 0;
-            console.log(answers);
             for (let i = 0; i < answers.length; i++) {
                 var answer = answers[i].answer;
-                var userChoice = $("#" + i).find(":selected").text();
+                var userChoice = $("#" + i).val();
                 if (userChoice == answer) {
-                    $('#' + i).css('border-color', 'green');
                     ++score;
+                    $('#' + i).css('border-color', 'green');
                 } else {
                     $('#' + i).css('border-color', 'red');
                 }
             }
-            $.get("updateScore", {grade: score, quiz: 4}, function(response) {
+            $.get("updateScore", {grade: score, quiz: quizNumber}, function(response) {
                 if (response.success) {
-                    console.log("success");
-                    // window.location.replace('grades');
+                    console.log("Score Updated!")
                 }
             });
         });

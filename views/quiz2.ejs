@@ -1,4 +1,23 @@
+<%
+    var words = ["cut", "three", "can", "dress", "cast", "stop", "lid", "four", "vest", "run", "toss", "win", "mom", "jam", "gum", "hot", "bat", "pig", "jet", "class", "up", "bed", "dad", "sick", "pen", "rob", "read", "letter", "lip", "mop", "hand"];
+    var sortedWords = words.slice();
+    sortedWords.sort();
+%>
 <h1>Quiz 2</h1>
 <p>Select the words that match the pictures and click Submit.</p>
 <hr>
-<div id="dropdowns"></div>
+<table>
+<% for (let i = 0; i < words.length; i++) { %>
+<tr>
+    <td><img src='images/<%=words[i] %>.png'></td>
+    <td>
+    <select id='<%=i %>' class='paragraph'>
+        <option><option>
+        <% for (let i = 0; i < sortedWords.length; i++) { %>
+        <option value='<%=sortedWords[i] %>'><%=sortedWords[i] %></option>
+        <% } %>
+    </select>
+</tr>
+<% } %>
+
+</table>

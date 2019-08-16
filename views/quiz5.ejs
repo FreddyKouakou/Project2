@@ -4,6 +4,7 @@
 %>
 
 <h1>Quiz 5</h1>
+<p>Select the correct answers and click the Submit button.</p>
 <table>
     <tr>
         <th>Question</th>
@@ -13,31 +14,31 @@
 <% for (let i = 0; i < 9; i++) { %>
     <tr>
     <td>
-    <select id="0" class="paragraph">
+    <select id="<%=i %>" class="paragraph">
         <option></option>
-        <option>Who</option>
-        <option>When</option>
-        <option>Where</option>
-        <option>Which</option>
-        <option>Why</option>
-        <option>How</option>
-        <option>What</option>
+        <option value="Who">Who</option>
+        <option value="When">When</option>
+        <option value="Where">Where</option>
+        <option value="Which">Which</option>
+        <option value="Why">Why</option>
+        <option value="How">How</option>
+        <option value="What">What</option>
     </select>
     <%=questions[i] %>
     </td>
     <td><%=answers[i] %></td>
     <td>
-    <select id="1" class="quiz5">
+    <select id="<%=i + 9 %>" class="quiz5">
         <option></option>
-        <option>Person</option>
-        <option>Time</option>
-        <option>Place</option>
-        <option>Choice</option>
-        <option>Reason</option>
-        <option>Explanation</option>
-        <option>Process</option>
-        <option>Condition</option>
-        <option>Item Description</option>
+        <option value="Person">Person</option>
+        <option value="Time">Time</option>
+        <option value="Place">Place</option>
+        <option value="Choice">Choice</option>
+        <option value="Reason">Reason</option>
+        <option value="Explanation">Explanation</option>
+        <option value="Process">Process</option>
+        <option value="Condition">Condition</option>
+        <option value="Item Description">Item Description</option>
     </select>
     </td>
     </tr>

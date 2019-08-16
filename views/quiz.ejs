@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/quiz<%=quiz %>.js"></script>
+    <script src="js/quiz.js"></script>
     <link rel="stylesheet" href="responav/resnavsmall.css">
     <link rel="stylesheet" href="responav/resnavmedium.css">
     <link rel="stylesheet" href="responav/resnavlarge.css">
@@ -20,6 +20,7 @@
     <main>
         <%- include('quiz' + quiz); %>
     </main>
+    <button id='submitBtn' onclick="submitAnswers(<%=quiz %>);">Submit</button>
     <hr>
     <!--Footer-->
     <%- include('footer.ejs'); %>
