@@ -103,6 +103,38 @@ INSERT INTO answers(question_number, answer, quiz) VALUES
     (17, 'What', 5),
     (18, 'Item Description', 5);
 
+-- Quiz 6
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'your', 6),
+    (2, 'you', 6),
+    (3, 'know', 6),
+    (4, 'have', 6),
+    (5, 'mean', 6),
+    (6, 'and', 6),
+    (7, 'right', 6),
+    (8, 'with', 6),
+    (9, 'like', 6),
+    (10, 'hope', 6),
+    (11, 'So', 6),
+    (12, 'are', 6),
+    (13, 'that', 6),
+    (14, 'think', 6);
+
+-- Quiz 7
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'set', 7),
+    (2, 'pain', 7),
+    (3, 'physician', 7),
+    (4, 'trouble, symptom', 7),
+    (5, 'meeting', 7),
+    (6, 'region', 7),
+    (7, 'residing', 7),
+    (8, 'traveling', 7),
+    (9, 'arriving', 7),
+    (10, 'freeway, interstate', 7),
+    (11, 'depart, leave', 7),
+    (12, 'off ramp', 7);
+
 INSERT INTO quizzes(quiz, submit) VALUES
     (1, FALSE),
     (2, FALSE),

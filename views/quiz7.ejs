@@ -1,0 +1,20 @@
+<%
+    var questions = ["make", "aches", "doctor", "problem", "appointment", "area", "living", "visiting", "coming", "highway", "get off", "exit"];
+    var dropdown = ["arriving", "trouble, symptom", "meeting", "set", "region", "residing", "physician", "depart, leave", "pain", "off ramp", "traveling", "freeway, interstate"];
+%>
+<h1>Quiz 7</h1>
+<p>Select the answer that best matches each word and click the Submit button.</p>
+<table>
+<% for (let i = 0; i < questions.length; i++) { %>
+<tr>
+    <td><%=questions[i] %></td>
+    <td>
+    <select id="<%=i %>" class="long">
+    <option></option>
+    <% for (let j = 0; j < dropdown.length; j++) { %>
+    <option value="<%=dropdown[j] %>"><%=dropdown[j] %></option>
+    <% } %>
+    </td>
+</tr>
+<% } %>
+</table>
