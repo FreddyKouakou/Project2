@@ -1,3 +1,6 @@
+<%
+  var videoLinks = ["", "", "", "", "", "", "", "", "", "", "", "", "", "https://www.youtube.com/watch?v=naqX9iYE0V0"];
+%>
 <!DOCTYPE html>
 <html>
 
@@ -39,7 +42,7 @@
           <tr>
             <td>Week <%=i %></td>
             <td><a href="pdf/week<%=i %>.pdf">Reading</a></td>
-            <td><a href="video1.mp4">Video</a></td>
+            <td><a href="<%=videoLinks[i - 1] %>">Video</a></td>
             <td><a href="quiz?qn=<%=i %>">Quiz</a></td>
           </tr>
           <% } %>

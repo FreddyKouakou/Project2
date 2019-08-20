@@ -124,3 +124,8 @@ table, th, td {
     width: auto;
     padding: 10px;
 }
+
+textarea {
+    width: 500px;
+    height: 100px;
+}

@@ -135,6 +135,98 @@ INSERT INTO answers(question_number, answer, quiz) VALUES
     (11, 'depart, leave', 7),
     (12, 'off ramp', 7);
 
+-- Quiz 8
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'for', 8),
+    (2, 'some', 8),
+    (3, 'For', 8),
+    (4, 'you', 8),
+    (5, 'your', 8),
+    (6, 'my', 8),
+    (7, 'What', 8),
+    (8, 'does', 8),
+    (9, 'want', 8),
+    (10, 'shoes', 8),
+    (11, 'know', 8),
+    (12, 'big', 8),
+    (13, 'these', 8),
+    (14, 'tight', 8);
+
+-- Quiz 9
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'wet', 9),
+    (2, 'lots', 9),
+    (3, 'freezing', 9),
+    (4, 'points', 9),
+    (5, 'rain', 9),
+    (6, 'pleasant', 9),
+    (7, 'under', 9),
+    (8, 'about', 9),
+    (9, '100', 9),
+    (10, 'breeze', 9),
+    (11, 'heat', 9);
+
+-- Quiz 10
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'pardon me', 10),
+    (2, 'No problem', 10),
+    (3, 'show me', 10),
+    (4, '3rd', 10),
+    (5, 'turn left', 10),
+    (6, 'directly in front of', 10),
+    (7, 'do it', 10),
+    (8, 'road', 10),
+    (9, 'pharmacy', 10),
+    (10, 'in this area', 10),
+    (11, 'store', 10);
+
+-- Quiz 11
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'We''re', 11),
+    (2, 'for', 11),
+    (3, 'my', 11),
+    (4, 'are', 11),
+    (5, 'Something', 11),
+    (6, 'would', 11),
+    (7, 'over', 11),
+    (8, 'Could', 11),
+    (9, 'one', 11),
+    (10, 'there', 11),
+    (11, 'We''ll', 11),
+    (12, 'right', 11),
+    (13, 'this', 11),
+    (14, 'Will', 11),
+    (15, 'cash', 11);
+
+-- Quiz 12
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'yellow', 12),
+    (2, 'green', 12),
+    (3, 'blue', 12),
+    (4, 'purple', 12),
+    (5, 'red', 12),
+    (6, 'orange', 12),
+    (7, 'brown', 12),
+    (8, 'white', 12),
+    (9, 'black', 12),
+    (10, 'pink', 12),
+    (11, 'gray', 12);
+
+-- Quiz 13
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'meal', 13),
+    (2, 'big', 13),
+    (3, 'potatoes', 13),
+    (4, 'eat it', 13),
+    (5, 'carton', 13),
+    (6, 'noon meal', 13),
+    (7, 'loaves', 13),
+    (8, '4 quarts', 13),
+    (9, 'drink', 13),
+    (10, 'cooking tool', 13);
+
+
+
 INSERT INTO quizzes(quiz, submit) VALUES
     (1, FALSE),
     (2, FALSE),
