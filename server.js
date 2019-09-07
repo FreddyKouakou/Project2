@@ -34,31 +34,32 @@ app.use(express.static("public")) //My html files
 * The user information is provided the by the user through the 
 * static file (html form) located in the public folder
  ******************************************************************************/
-app.post("/signUp", (req, res) => {
+app.post("/createAccount", (req, res) => {
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var userName = req.body.userName;
     var phoneNumber = req.body.phoneNumber;
-    var passWord = req.body.userPassWord;
+    var password = req.body.userPassWord;
+    var currentWeek = 1;
+    var isAdmin = req.body.isAdmin;
 
-    var checkUserName = "SELECT users_name FROM user_table WHERE users_name = $1"
+    var checkUserName = "SELECT username FROM users WHERE username = $1"
     pool.query(checkUserName, [userName], (err, result) => {
         if (err) { console.log("Error happens here" + err) }
 
         else if (result.rows.length == 0) {
-            console.log(result.rows.length)
 
-            bcrypt.hash(passWord, 10, function (err, hash) {
-                var userInfo = [firstName, lastName, userName, phoneNumber, hash]
+            bcrypt.hash(password, 10, function (err, hash) {
+                var userInfo = [firstName, lastName, userName, phoneNumber, hash, currentWeek, isAdmin];
                 // Store hash in database
-                var insertIntodb = "INSERT INTO user_table(first_name, last_name, users_name, phone_number, pass_word) VALUES($1, $2, $3, $4, $5) " //This insert the user's data in the variable $1...5 in the query
+                var insertIntodb = "INSERT INTO users(first_name, last_name, username, phone_number, password_hash, current_week, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7) " //This insert the user's data in the variable $1...5 in the query
                 pool.query(insertIntodb, userInfo, (err, result) => {
 
                     if (err) {
                         console.log("Didn't get the user info" + err)
                     }
                     else {
-                        res.send({ toRedirect: true })
+                        res.send({success: true})
                     }
                 });
 
@@ -140,41 +141,84 @@ app.get("/getUser/:users_name", (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.render('homepage.ejs');
+    res.render('index.ejs', {page: "homepage"});
 });
 
 app.get('/about', (req, res) => {
-    res.render('about.ejs');
+    res.render('index.ejs', {page: "about"});
 });
 
 app.get('/contact', (req, res) => {
-    res.render('contact.ejs');
+    res.render('index.ejs', {page: "contact"});
 });
 
 app.get('/lesson', (req, res) => {
-    res.render('lessons.ejs');
+    if (req.session.userId == null) {
+        res.render('index.ejs', {page: "signin"});
+    } else {
+        var userId = 1; // change to session
+        var values = [userId];
+        var sql = "SELECT current_week FROM users WHERE id=$1";
+        pool.query(sql, values, (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                var currentWeek = result.rows[0].current_week;
+                res.render('index.ejs', {page: "lessons", currentWeek: currentWeek});
+            }
+        }); 
+    }
+    
+});
+
+app.get('/home', (req, res) => {
+    res.render('index.ejs', {page: "homepage"});
 });
 
 app.get('/signin', (req, res) => {
-    res.render('signin.ejs');
+    req.session.userId = 1;
+    res.render('index.ejs', {page: "signin"});
 });
 
-app.get('/signup', (req, res) => {
-    res.render('signup.ejs');
+app.get('/admin', (req, res) => {
+
+    var userId = 1; // change to session
+    var values = [userId];
+    var sql = "SELECT is_admin FROM users WHERE id=$1";
+    pool.query(sql, values, (err, result) => {
+        if (result.rows[0] == null) {
+            isAdmin = null;
+        } else {
+            var isAdmin = result.rows[0].is_admin;
+        }
+        if (isAdmin == "yes") {
+            var sql = "SELECT first_name, last_name, username, phone_number, is_admin FROM users";
+            pool.query(sql, (err, result) => {
+                res.render('index.ejs', {page: "admin", users: result.rows});
+            });
+        } else {
+            res.render('index.ejs', {page: "signin"});
+        }
+    });
+    
 });
 
 app.get('/quiz', (req, res) => {
     var quiz = req.query.qn;
-    res.render('quiz.ejs', {quiz: quiz});
+    res.render('index.ejs', {page: "quiz/quiz" + quiz});
 });
 
 app.get('/grades', (req, res) => {
-    var userId = 1; // change to session
-    var values = [userId];
-    var sql = "SELECT grade FROM grades WHERE user_id=$1 ORDER BY quiz";
-    pool.query(sql, values, function(err, result) {
-        res.render('grades.ejs', {grades: result.rows});
-    });
+    if (req.session.userId == null) {
+        res.render('index.ejs', {page: "signin"});
+    } else {
+        var userId = 1; // change to session
+        var values = [userId];
+        var sql = "SELECT grade FROM grades WHERE user_id=$1 ORDER BY quiz";
+        pool.query(sql, values, function(err, result) {
+            res.render('index.ejs', {page: "grades", grades: result.rows});
+        });
+    }
 });
 
 app.get('/getGrades', (req, res) => {

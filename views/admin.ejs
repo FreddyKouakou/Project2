@@ -1,0 +1,38 @@
+
+<table>
+<tr>
+  <th>First Name</th>
+  <th>Last Name</th>
+  <th>username</th>
+  <th>Phone Number</th>
+  <th>Admin</th>
+<tr>
+<% for (let i = 0; i < users.length; i++) { %>
+
+<tr>
+  <td><%=users[i].first_name %></td>
+  <td><%=users[i].last_name %></td>
+  <td><%=users[i].username %></td>
+  <td><%=users[i].phone_number %></td>
+  <td><%=users[i].is_admin %></td>
+</tr>
+<% } %>
+</table>
+
+<fieldset>
+    <legend>Create User Account</legend>
+        <!-- Will be changed to POST soon -->
+        <h5 id="signUpData" class="errMessage"></h5>
+        <h5>First Name* <input id="firstName" required name="first_name" type="text"></h5>
+        <h5>Last Name* <input id="lastName" required name="last_name" type="text"></h5>
+        <h5>User Name* <input id="userName" required name="user_name" type="text"></h5>
+        <h5>Phone Number* <input id="phoneNumber" required name="phone_number" type="tel"></h5>
+        <h5>Password* <input id="passWord" required name="pass_word" type="password"></h5>
+        <h5>User Type*
+        <select id="isAdmin">
+          <option value="no">Student</option>
+          <option value="yes">Admin</option>
+        </select>
+        </h5>
+        <button id="submitBtn" onclick="createAccount()">Create Account</button>
+</fieldset>

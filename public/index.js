@@ -1,3 +1,21 @@
+function createAccount() {
+    var firstName = $("#firstName").val()
+    var lastName = $("#lastName").val()
+    var phoneNumber = $("#phoneNumber").val()
+    var userName = $("#userName").val()
+    var userPassWord = $("#passWord").val()
+    var isAdmin = $("#isAdmin").find(":selected").val();
+    console.log(isAdmin);
+    $.post("createAccount", { userName: userName, userPassWord: userPassWord, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, isAdmin: isAdmin }, (data) => {
+        if (data.success) {
+            //redirecting from js
+            location.reload();
+        } else {
+                $("#signUpData").html(data.errMessage)
+        }
+    })
+}
+
 function submitAnswers(quizNumber) {
     var message = "Are you sure you want to submit? Click OK or Cancel.";
     if (confirm(message)) {
@@ -28,3 +46,17 @@ function submitAnswers(quizNumber) {
         console.log("Canceled.");
     }
 }
+
+function submitButton(){
+    var userName = $("#inputUserName").val()
+    var userPassWord = $("#inputPassWord").val()
+    $.post("/signin", {userName : userName, userPassWord : userPassWord}, (data)=>{
+     if(data.toRedirect == true){
+     //redirecting from js
+         window.location.replace("exercises.html")
+     }else{
+         $("#serverData").html(data.errMessage)
+     }
+ 
+    })   
+ }

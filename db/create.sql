@@ -1,10 +1,12 @@
-CREATE TABLE user_table(
-id SERIAL PRIMARY KEY,
-first_name VARCHAR(100),
-last_name VARCHAR(100),
-phone_number VARCHAR(20),
-users_name VARCHAR(100),
-pass_word VARCHAR(255)
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    phone_number VARCHAR(255),
+    username VARCHAR(255),
+    password_hash VARCHAR(255),
+    current_week INT,
+    is_admin VARCHAR(255)
 );
 
 CREATE TABLE answers(
@@ -34,3 +36,4 @@ CREATE TABLE user_responses(
     quiz INT,
     user_id INT REFERENCES user_table
 );
+
