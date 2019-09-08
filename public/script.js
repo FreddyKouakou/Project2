@@ -1,19 +1,30 @@
+function confirmPassword() {
+    var password = $("#password").val();
+    var confirmPassword = $("#confirmPassword").val();
+    if (password.length && password == confirmPassword) {
+        $("#passwordMatch").hide();
+        $("#submitBtn").show();
+    } else {
+        $("#passwordMatch").show();
+        $("#submitBtn").hide();
+    }
+}
+
 function createAccount() {
     var firstName = $("#firstName").val()
     var lastName = $("#lastName").val()
     var phoneNumber = $("#phoneNumber").val()
-    var userName = $("#userName").val()
-    var userPassWord = $("#passWord").val()
-    var isAdmin = $("#isAdmin").find(":selected").val();
-    console.log(isAdmin);
-    $.post("createAccount", { userName: userName, userPassWord: userPassWord, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, isAdmin: isAdmin }, (data) => {
-        if (data.success) {
-            //redirecting from js
+    var username = $("#username").val()
+    var password = $("#password").val()
+    var accountType = $("#accountType").find(":selected").val();
+    var params = {firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, username: username, password: password, accountType: accountType}
+    $.post("createAccount", params, (response) => {
+        if (response.success) {
             location.reload();
         } else {
-                $("#signUpData").html(data.errMessage)
+            $("#signUpData").html(response.errMessage)
         }
-    })
+    });
 }
 
 function submitAnswers(quizNumber) {

@@ -5,7 +5,7 @@
   <th>Last Name</th>
   <th>username</th>
   <th>Phone Number</th>
-  <th>Admin</th>
+  <th>Account Type</th>
 <tr>
 <% for (let i = 0; i < users.length; i++) { %>
 
@@ -14,7 +14,7 @@
   <td><%=users[i].last_name %></td>
   <td><%=users[i].username %></td>
   <td><%=users[i].phone_number %></td>
-  <td><%=users[i].is_admin %></td>
+  <td><%=users[i].account_type %></td>
 </tr>
 <% } %>
 </table>
@@ -25,14 +25,15 @@
         <h5 id="signUpData" class="errMessage"></h5>
         <h5>First Name* <input id="firstName" required name="first_name" type="text"></h5>
         <h5>Last Name* <input id="lastName" required name="last_name" type="text"></h5>
-        <h5>User Name* <input id="userName" required name="user_name" type="text"></h5>
+        <h5>User Name* <input id="username" required name="user_name" type="text"></h5>
         <h5>Phone Number* <input id="phoneNumber" required name="phone_number" type="tel"></h5>
-        <h5>Password* <input id="passWord" required name="pass_word" type="password"></h5>
+        <h5>Password* <input id="password" required name="pass_word" type="password" oninput="confirmPassword();"></h5>
+        <h5>Confirm Password* <input id="confirmPassword" type="password" oninput="confirmPassword();"><span id="passwordMatch" class="error">Passwords must match</span></span></h5>
         <h5>User Type*
-        <select id="isAdmin">
-          <option value="no">Student</option>
-          <option value="yes">Admin</option>
+        <select id="accountType">
+          <option value="student">Student</option>
+          <option value="admin">Admin</option>
         </select>
         </h5>
-        <button id="submitBtn" onclick="createAccount()">Create Account</button>
+        <button id="submitBtn" class="invisible" onclick="createAccount()">Create Account</button>
 </fieldset>

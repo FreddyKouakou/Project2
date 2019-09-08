@@ -22,50 +22,54 @@ app.use(session({
 // connect to postgres database
 const { Pool } = require('pg')
 const dbUrl = process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/freddy_english'
-const pool = new Pool({ connectionString: dbUrl })
+const pool = new Pool({ connectionString: dbUrl });
 
+// middleware to check login
+const auth = function(req, res, next) {
+    req.session.userId = 1;
+    req.session.currentWeek = 14;
+    req.session.accountType = "admin";
+    if (req.session.userId) {
+        next();
+    } else {
+        res.render("index.ejs", {page: "signin"});
+    }
+}
 
 //statics files path
-app.use(express.static("public")) //My html files
+app.use(express.static("public")) 
 
-/******************************************************************************
-* Function:app.get("/createUser")
-* Description: This block insert the user's information in the Database
-* The user information is provided the by the user through the 
-* static file (html form) located in the public folder
- ******************************************************************************/
 app.post("/createAccount", (req, res) => {
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
-    var userName = req.body.userName;
+    var username = req.body.username;
     var phoneNumber = req.body.phoneNumber;
-    var password = req.body.userPassWord;
+    var password = req.body.password;
     var currentWeek = 1;
-    var isAdmin = req.body.isAdmin;
+    var accountType = req.body.accountType;
 
-    var checkUserName = "SELECT username FROM users WHERE username = $1"
-    pool.query(checkUserName, [userName], (err, result) => {
+    var checkUserName = "SELECT username FROM users WHERE username = $1";
+    pool.query(checkUserName, [username], (err, result) => {
         if (err) { console.log("Error happens here" + err) }
 
         else if (result.rows.length == 0) {
 
             bcrypt.hash(password, 10, function (err, hash) {
-                var userInfo = [firstName, lastName, userName, phoneNumber, hash, currentWeek, isAdmin];
+                var userInfo = [firstName, lastName, username, phoneNumber, hash, currentWeek, accountType];
                 // Store hash in database
-                var insertIntodb = "INSERT INTO users(first_name, last_name, username, phone_number, password_hash, current_week, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7) " //This insert the user's data in the variable $1...5 in the query
+                var insertIntodb = "INSERT INTO users(first_name, last_name, username, phone_number, password_hash, current_week, account_type) VALUES($1, $2, $3, $4, $5, $6, $7) " //This insert the user's data in the variable $1...5 in the query
                 pool.query(insertIntodb, userInfo, (err, result) => {
 
                     if (err) {
-                        console.log("Didn't get the user info" + err)
-                    }
-                    else {
+                        console.log(err);
+                    } else {
                         res.send({success: true})
                     }
                 });
 
             });
         } else {
-            res.send({ errMessage: userName + " already exist.", toRedirect: false })
+            res.send({errMessage: userName + " already exists."});
         }
     })
 
@@ -107,39 +111,6 @@ app.post("/signin", (req, res) => {
 
 });
 
-/******************************************************************************
- * Create the web service for the question 
- * using get()
- ******************************************************************************/
-app.get("/exercisePath", (req, res) => {
-    var questionNumberSent = req.query.questionNumber;
-    pool.query("SELECT * FROM questions WHERE question_id = $1", [questionNumberSent], (err, result) => {
-        if (err) console.log("Couldn't get questions")
-        else {
-            console.log(result.rows);
-            res.json(result.rows);
-        }
-    });
-});
-
-/******************************************************************************
- * Function: GET()
- * Description: This function retrieve the questions and send it them to 
- * the  browser.(Querying questions form the questions table)
- ******************************************************************************/
-//Displays the json in the browser
-app.get("/getUser/:users_name", (req, res) => {
-    var getUserName = req.params.users_name
-    var user_name_on_try = [getUserName]
-    pool.query("SELECT * FROM user_table WHERE users_name = $1", user_name_on_try, (err, result) => {
-        if (err) console.log("Still given troubles" + err)
-        else {
-            var displayNameArray = result.rows
-            res.send(displayNameArray)
-        }
-    });
-});
-
 app.get('/', (req, res) => {
     res.render('index.ejs', {page: "homepage"});
 });
@@ -152,23 +123,8 @@ app.get('/contact', (req, res) => {
     res.render('index.ejs', {page: "contact"});
 });
 
-app.get('/lesson', (req, res) => {
-    if (req.session.userId == null) {
-        res.render('index.ejs', {page: "signin"});
-    } else {
-        var userId = 1; // change to session
-        var values = [userId];
-        var sql = "SELECT current_week FROM users WHERE id=$1";
-        pool.query(sql, values, (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                var currentWeek = result.rows[0].current_week;
-                res.render('index.ejs', {page: "lessons", currentWeek: currentWeek});
-            }
-        }); 
-    }
-    
+app.get('/lesson', auth, (req, res) => {
+    res.render('index.ejs', {page: "lessons", currentWeek: req.session.currentWeek});
 });
 
 app.get('/home', (req, res) => {
@@ -176,30 +132,19 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/signin', (req, res) => {
-    req.session.userId = 1;
     res.render('index.ejs', {page: "signin"});
 });
 
 app.get('/admin', (req, res) => {
-
-    var userId = 1; // change to session
-    var values = [userId];
-    var sql = "SELECT is_admin FROM users WHERE id=$1";
-    pool.query(sql, values, (err, result) => {
-        if (result.rows[0] == null) {
-            isAdmin = null;
-        } else {
-            var isAdmin = result.rows[0].is_admin;
-        }
-        if (isAdmin == "yes") {
-            var sql = "SELECT first_name, last_name, username, phone_number, is_admin FROM users";
-            pool.query(sql, (err, result) => {
-                res.render('index.ejs', {page: "admin", users: result.rows});
-            });
-        } else {
-            res.render('index.ejs', {page: "signin"});
-        }
-    });
+    if (req.session.accountType == "admin") {
+        var sql = "SELECT first_name, last_name, username, phone_number, account_type FROM users";
+        pool.query(sql, (err, result) => {
+            res.render('index.ejs', {page: "admin", users: result.rows});
+        });
+    } else {
+        res.render('index.ejs', {page: "signin"});
+    }
+    
     
 });
 
@@ -208,26 +153,14 @@ app.get('/quiz', (req, res) => {
     res.render('index.ejs', {page: "quiz/quiz" + quiz});
 });
 
-app.get('/grades', (req, res) => {
-    if (req.session.userId == null) {
-        res.render('index.ejs', {page: "signin"});
-    } else {
-        var userId = 1; // change to session
-        var values = [userId];
-        var sql = "SELECT grade FROM grades WHERE user_id=$1 ORDER BY quiz";
-        pool.query(sql, values, function(err, result) {
-            res.render('index.ejs', {page: "grades", grades: result.rows});
-        });
-    }
-});
-
-app.get('/getGrades', (req, res) => {
-    var values = [1]; // change to session 
-    var sql = "SELECT * FROM grades WHERE user_id=$1";
+app.get('/grades', auth, (req, res) => {
+    var userId = 1; // change to session
+    var values = [userId];
+    var sql = "SELECT grade FROM grades WHERE user_id=$1 ORDER BY quiz";
     pool.query(sql, values, function(err, result) {
-        var grades = result.rows;
-        res.send({grades: grades});
+        res.render('index.ejs', {page: "grades", grades: result.rows, currentWeek: req.session.currentWeek});
     });
+    
 });
 
 app.get("/updateScore", (req, res) => {
@@ -259,7 +192,7 @@ app.get("/getAnswers", (req, res) => {
     });
 });
 
-app.get("/getSubmitStatus", (req, res) => {
+app.get("/getSubmit", (req, res) => {
     var quiz = req.query.quiz;
     var values = [quiz];
     var sql = "SELECT submit FROM quizzes WHERE quiz=$1";

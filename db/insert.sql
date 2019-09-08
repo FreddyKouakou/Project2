@@ -1,3 +1,28 @@
+INSERT INTO grades(grade, quiz, user_id) VALUES
+    (0, 1, 1),
+    (0, 2, 1),
+    (0, 3, 1),
+    (0, 4, 1),
+    (0, 5, 1),
+    (0, 6, 1),
+    (0, 7, 1),
+    (0, 8, 1),
+    (0, 9, 1),
+    (0, 10, 1),
+    (0, 11, 1),
+    (0, 12, 1),
+    (0, 13, 1),
+    (0, 14, 1);
+
+-- Quiz 1
+INSERT INTO answers(question_number, answer, quiz) VALUES
+    (1, 'What', 1),
+    (2, 'name', 1),
+    (3, 'A', 1),
+    (4, 'A', 1),
+    (5, 'A', 1),
+    (6, 'A', 1);
+
 -- Quiz 2
 INSERT INTO answers(question_number, answer, quiz) VALUES
     (1, 'cut', 2),
@@ -31,33 +56,6 @@ INSERT INTO answers(question_number, answer, quiz) VALUES
     (29, 'lip', 2),
     (30, 'mop', 2),
     (31, 'hand', 2);
-
-INSERT INTO user_table(users_name) VALUES ('mSchmidt');
-
-INSERT INTO grades(grade, quiz, user_id) VALUES
-    (0, 1, 1),
-    (0, 2, 1),
-    (0, 3, 1),
-    (0, 4, 1),
-    (0, 5, 1),
-    (0, 6, 1),
-    (0, 7, 1),
-    (0, 8, 1),
-    (0, 9, 1),
-    (0, 10, 1),
-    (0, 11, 1),
-    (0, 12, 1),
-    (0, 13, 1),
-    (0, 14, 1);
-
--- Quiz 1
-INSERT INTO answers(question_number, answer, quiz) VALUES
-    (1, 'What', 1),
-    (2, 'name', 1),
-    (3, 'A', 1),
-    (4, 'A', 1),
-    (5, 'A', 1),
-    (6, 'A', 1);
 
 -- Quiz 3
 INSERT INTO answers(question_number, answer, quiz) VALUES

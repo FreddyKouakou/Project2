@@ -6,7 +6,7 @@ CREATE TABLE users(
     username VARCHAR(255),
     password_hash VARCHAR(255),
     current_week INT,
-    is_admin VARCHAR(255)
+    account_type VARCHAR(255)
 );
 
 CREATE TABLE answers(
@@ -15,12 +15,12 @@ CREATE TABLE answers(
     answer VARCHAR(255),
     quiz INT
 );
-​
+
 CREATE TABLE grades(
     id SERIAL PRIMARY KEY,
     grade INT,
     quiz INT,
-    user_id INT REFERENCES user_table
+    user_id INT REFERENCES users
 );
 
 CREATE TABLE quizzes(
@@ -34,6 +34,6 @@ CREATE TABLE user_responses(
     response VARCHAR(255),
     question_number INT,
     quiz INT,
-    user_id INT REFERENCES user_table
+    user_id INT REFERENCES users
 );
 
