@@ -1,6 +1,11 @@
 body{
+    margin: 0px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: white;
+}
+
+h1{
+    color:green;
 }
 
 .error {
@@ -9,6 +14,61 @@ body{
 
 .invisible {
     display: none;
+}
+
+.active {
+    background-color: green;
+}
+
+#signin {
+    float: right;
+    border-left: 1px solid rgba(0,0,0,0.3);
+}
+
+nav ul li a:hover{
+    background-color: green;
+}
+
+#homepage img {
+    height: 50px;
+}
+
+#homepage a {
+    padding-top: 3px;
+    padding-bottom: 0px;
+    padding-right: 3px;
+    padding-left: 0px;
+}
+
+#changePassword {
+    float: right;
+}
+
+.heading {
+    background-image: linear-gradient(to right, green, white);
+    padding: 50px;
+    margin-top: 30px;
+    color: black;
+}
+
+.heading h1 {
+    color: black;
+    
+}
+
+#gradesTable {
+    width: 100%;
+}
+
+#gradesTable td {
+    border-left: none;
+    border-right: none;
+    text-align: center;
+}
+
+#gradesTable th {
+    border-left: none;
+    border-right: none;
 }
 
 form{
@@ -86,14 +146,7 @@ p{
     background: orange;
     text-align: center;
 }
-i{
-    float: right;
-    background-color: blue;
-    color:white;
-}
-h1{
-    color:green;
-}
+
 .errMessage{
     color: red;
     background: #fff;

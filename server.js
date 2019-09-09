@@ -84,7 +84,7 @@ app.post("/signin", (req, res) => {
     var userSignIn = req.body.userName;
     var userPassWord = req.body.userPassWord;
     var userInfoArray = [userSignIn];
-    pool.query("SELECT pass_word FROM user_table WHERE users_name = $1", userInfoArray, (err, result) => {
+    pool.query("SELECT id, password_hash, current_week, account_type FROM users WHERE username = $1", userInfoArray, (err, result) => {
         if (err) {
             console.log("Error getting the user name" + err)
 
@@ -92,14 +92,16 @@ app.post("/signin", (req, res) => {
             if (result.rows.length > 0) {
 
                 //setting session
-                bcrypt.compare(userPassWord, result.rows[0].pass_word, function (err, resMatch) {
+                bcrypt.compare(userPassWord, result.rows[0].password_hash, function (err, resMatch) {
                     if (resMatch) {
                         // Passwords match
-                        req.session.userName = userSignIn
-                        res.send({ toRedirect: true });
+                        req.session.userId = result.rows[0].id;
+                        req.session.currentWeek = result.rows[0].current_week;
+                        req.session.accountType = result.rows[0].account_type;
+                        res.send({match: true});
                     } else {
                         // Passwords don't match
-                        res.send({ errMessage: "Wrong Password", toRedirect: false })
+                        res.send({errMessage: "Wrong Password", match: false})
                     }
                 });
 
@@ -109,6 +111,26 @@ app.post("/signin", (req, res) => {
         }
     });
 
+});
+
+app.post('/updatePassword', (req, res) => {
+    var password = req.body.password;
+    bcrypt.hash(password, 10, (err, passwordHash) => {
+        var values = [passwordHash, req.session.userId];
+        var sql = "UPDATE users SET password_hash=$1 WHERE id=$2";
+        pool.query(sql, values, (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({success: true});
+            }
+        });
+    });
+    
+});
+
+app.get('/changePassword', auth, (req, res) => {
+    res.render('index.ejs', {page: "changePassword"})
 });
 
 app.get('/', (req, res) => {

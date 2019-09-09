@@ -10,14 +10,47 @@
   }
 
   var percentage = (totalScore * 100.0 / totalMaxScore).toFixed(2);
+  var passFail = "";
+  var passFailColor = "";
+  if (currentWeek == 14) {
+      if (percentage >= 70) {
+          passFail = "PASS";
+          passFailColor = "green"; 
+      } else {
+          passFail = "FAIL";
+          passFailColor = "red";
+      }
+  } else {
+      passFail = "";
+  }
 %>
 
-<h1>Grades</h1>
-<p>Percentage: <%=percentage %>%</p>
-<table>
+<div class="heading"><h1>GRADES</h1></div>
+<table id="gradesTable">
+<tr>
+  <th></th>
+  <th>Score</th>
+  <th>Out of</th>
+</tr>
 <% for (let i = 0; i < currentWeek; i++) { %> 
-<tr><td>Week <%=i + 1 %></td><td><%=grades[i].grade %></td><td><%=maxScores[i] %></td></tr>
+<tr><td><a href="lesson">Week <%=i + 1 %></a></td><td><%=grades[i].grade %></td><td><%=maxScores[i] %></td></tr>
 <% } %>
+<tr>
+  <td>Total Score</td>
+  <td><%=totalScore %></td>
+  <td><%=totalMaxScore %></td>
+</tr>
+<tr>
+  <td>Percentage</td>
+  <td></td>
+  <td><%=percentage %>%</td>
+</tr>
+<tr>
+  <td></td>
+  <td></td>
+  <td style="color: <%=passFailColor %>"><%=passFail %></td>
+</tr>
 </table>
 <p>Total Score: <%=totalScore %> / <%=totalMaxScore %></p>
+<p>Percentage: <%=percentage %>%</p>
         

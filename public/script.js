@@ -58,16 +58,26 @@ function submitAnswers(quizNumber) {
     }
 }
 
-function submitButton(){
+function checkLogin(){
     var userName = $("#inputUserName").val()
     var userPassWord = $("#inputPassWord").val()
     $.post("/signin", {userName : userName, userPassWord : userPassWord}, (data)=>{
-     if(data.toRedirect == true){
-     //redirecting from js
-         window.location.replace("exercises.html")
+     if(data.match){
+         window.location.replace("lesson");
      }else{
-         $("#serverData").html(data.errMessage)
+         $("#serverData").html(data.errMessage);
      }
  
     })   
+ }
+
+ function changePassword() {
+     var password = $("#password").val();
+     var params = {password: password};
+     $.post("updatePassword", params, (response) => {
+         if (response.success) {
+             alert("Password Successfully Changed");
+             window.location.replace("signin");
+         }
+     });
  }

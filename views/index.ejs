@@ -6,28 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Ivoire English Pro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="responav/resnavsmall.css">
-    <link rel="stylesheet" href="responav/resnavmedium.css">
-    <link rel="stylesheet" href="responav/resnavlarge.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/small.css">
+    <link rel="stylesheet" href="css/large.css">
     <script src="responav/resnav.js"></script>
   </head>
 
   <body>
     <header>
-      <img src="responav/Logo2r.jpg" alt="IvoireEnglishPro" width="80px" height="80px">
       <nav class="clearfix">
         <button onclick="menu();">&#9776;</button>
         <ul id="primaryNav" class="hide">
-          <li id="homepage"><a href="home">Home</a></li>
-          <li id="admin"><a href="admin">Admin</a></li>
-          <li id="signin"><a href="signin">Sign in</a></li>
+          <li id="homepage"><a href="home"><img src="images/logo.jpg"></a></li>
           <li id="lessons"><a href="lesson">Lessons</a></li>
           <li id="grades"><a href="grades">Grades</a></li>
-          <li id="about"><a href="about">About</a></li>
-          <li id="contact"><a href="contact">Contact</a></li>
+          <li id="changePassword"><a href="changePassword">Change Password</a></li>
+          <li id="signin"><a href="signin">Sign in <i class="fa fa-sign-in"></i></a></li>
         </ul>
       </nav>
     </header>
@@ -42,6 +39,8 @@
 
 </html>
 <script>
-    $("#<%=page %>").addClass("active");
+  if (<%=page %> != "admin") {
+      $("#<%=page %>").addClass("active");
+  }
 </script>
 

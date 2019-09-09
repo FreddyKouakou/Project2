@@ -29,9 +29,7 @@ nav ul li.active a{
     background-color: green;
     color: #fff;
 }
-nav ul li a:hover{
-    background-color: green;
-}
+
 nav ul.hide{display: none;
 }
 .clearfix:after{
