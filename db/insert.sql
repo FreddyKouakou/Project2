@@ -284,3 +284,4 @@ INSERT INTO user_responses(response, question_number, quiz, user_id) VALUES
     ('', 7, 3, 1),
     ('', 8, 3, 1);
 
+INSERT INTO users(first_name, last_name, phone_number, username, account_type) VALUES ('Freddy', 'Kouakou', '+123456789', 'fkouakou', 'admin');
