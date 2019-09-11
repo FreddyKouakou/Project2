@@ -26,9 +26,9 @@ const pool = new Pool({ connectionString: dbUrl });
 
 // middleware to check login
 const auth = function(req, res, next) {
-    req.session.userId = 1;
-    req.session.currentWeek = 14;
-    req.session.accountType = "admin";
+    // req.session.userId = 1;
+    // req.session.currentWeek = 14;
+    // req.session.accountType = "admin";
     if (req.session.userId) {
         next();
     } else {
@@ -114,7 +114,7 @@ app.post("/signin", (req, res) => {
 
 });
 
-app.get('/signout', (req, res) => {
+app.get('/signout', auth, (req, res) => {
     req.session.destroy();
     res.render("index.ejs", {page: "signin", firstName: null});
 });
@@ -168,7 +168,7 @@ app.get('/admin', auth, (req, res) => {
     
 });
 
-app.get('/quiz', (req, res) => {
+app.get('/quiz', auth, (req, res) => {
     var quiz = req.query.qn;
     res.render('index.ejs', {page: "quiz/quiz" + quiz, firstName: req.session.firstName});
 });
