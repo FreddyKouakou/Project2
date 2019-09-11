@@ -4,21 +4,27 @@
     }
 
     #homepage {
-        
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        padding-top: 3px;
     }
 
     nav { 
         display: block;
         position: fixed;
-        z-index: 1;
+        z-index: 2;
         top: 0;
+        left: 0;
         background-color: orange;
         width: 100%;
-        display: none;
+        
     }
 
     nav ul {
-        padding: 0;
+        margin: 0;
+        margin-left: 205px;
     }
 
     #heading {
@@ -29,13 +35,24 @@
         display: block;
         float: left;
         list-style-type: none;
+        padding: 0;
+        margin: 0;
+        border-right: 1px solid rgba(0,0,0,0.3);
     }
     
     nav ul li a {
         display: block;
         border:none;
         border-right: 1px solid rgba(0, 0, 0, .3);
-        
+        padding: 18px 15px;
+        padding-bottom: 19px;
+        text-decoration: none;
+        color: white;
+    }
+
+    fieldset {
+        margin-top: 80px;
+        margin-bottom: 30px;
     }
     
 

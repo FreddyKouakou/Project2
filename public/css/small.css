@@ -7,10 +7,25 @@ nav button{
 }
 
 #homepage {
+    position: fixed;
+    top: 0;
+    left: 55px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    padding-left: 4px;
+    padding-right: 2px;
+}
+
+#welcome {
     display: none;
 }
 
 nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
     background-color: orange;
     font-family: Verdana, sans-serif;
 }
@@ -28,7 +43,9 @@ nav ul li {
 nav ul a {
     display: block;
     width: 100%;
-    padding: 15px;
+    padding: 18px 17px;
+    text-decoration: none;
+    color: white;
 }
 
 }

@@ -98,9 +98,13 @@ nav ul li a:hover{
 
 #homepage a {
     padding-top: 3px;
-    padding-bottom: 0px;
+    padding-bottom: 3px;
     padding-right: 3px;
     padding-left: 0px;
+}
+
+#homepage:hover {
+    background-color: green;
 }
 
 #changePassword {
@@ -134,6 +138,11 @@ nav ul li a:hover{
     border-right: none;
 }
 
+main {
+    margin-top: 100px;
+    margin-bottom: 80px;
+}
+
 form{
     border-radius: 3px
 }
@@ -141,6 +150,7 @@ fieldset{
     border-radius: 10px;
     position: relative;
 }
+
 fieldset legend{
     color: blue;
 }
