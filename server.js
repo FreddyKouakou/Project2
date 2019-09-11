@@ -30,7 +30,6 @@ const auth = function(req, res, next) {
     // req.session.currentWeek = 14;
     // req.session.accountType = "admin";
     if (req.session.userId) {
-        console.log("__dirname: " + __dirname);
         next();
     } else {
         res.render("index.ejs", {page: "signin", firstName: req.session.firstName});
@@ -161,6 +160,7 @@ app.get('/lesson', auth, (req, res) => {
 });
 
 app.get('/home', (req, res) => {
+    console.log("dirname: " + __dirname);
     res.render('index.ejs', {page: "homepage", firstName: req.session.firstName});
 });
 
