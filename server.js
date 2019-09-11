@@ -160,7 +160,6 @@ app.get('/lesson', auth, (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-    console.log("dirname: " + __dirname);
     res.render('index.ejs', {page: "homepage", firstName: req.session.firstName});
 });
 
@@ -188,10 +187,8 @@ app.get('/quiz', auth, (req, res) => {
 
 app.get('/grades', auth, (req, res) => {
     var values = [req.session.userId];
-    console.log("userId: " + req.session.userId);
     var sql = "SELECT grade FROM grades WHERE user_id=$1 ORDER BY quiz";
     pool.query(sql, values, function(err, result) {
-        console.log("result.rows:" + result.rows);
         res.render('index.ejs', {page: "grades", grades: result.rows, currentWeek: req.session.currentWeek, firstName: req.session.firstName});
     });
     

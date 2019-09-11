@@ -4,12 +4,12 @@
     sortedWords.sort();
 %>
 <h1>Quiz 12</h1>
-<p>Select the words that match the pictures and click Submit.</p>
+<p>Select the words that match the colors and click Submit.</p>
 <hr>
 <table>
 <% for (let i = 0; i < words.length; i++) { %>
 <tr>
-    <td><img src='images/<%=words[i] %>.png'></td>
+    <td class="colorbox" style="background-color: <%=words[i] %>;"></td>
     <td>
     <select id='<%=i %>' class='paragraph'>
         <option><option>

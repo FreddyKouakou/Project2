@@ -20,6 +20,10 @@ h1{
     background-color: green;
 }
 
+.colorbox {
+    width: 100px;
+}
+
 #englishConnect {
     width: 100%;
 }
