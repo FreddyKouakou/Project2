@@ -26,9 +26,9 @@ const pool = new Pool({ connectionString: dbUrl });
 
 // middleware to check login
 const auth = function(req, res, next) {
-    // req.session.userId = 1;
-    // req.session.currentWeek = 14;
-    // req.session.accountType = "admin";
+    req.session.userId = 1;
+    req.session.currentWeek = 14;
+    req.session.accountType = "admin";
     if (req.session.userId) {
         next();
     } else {
@@ -155,7 +155,7 @@ app.get('/signin', (req, res) => {
     res.render('index.ejs', {page: "signin", firstName: req.session.firstName});
 });
 
-app.get('/admin', (req, res) => {
+app.get('/admin', auth, (req, res) => {
     if (req.session.accountType == "admin") {
         var sql = "SELECT first_name, last_name, username, phone_number, account_type FROM users";
         pool.query(sql, (err, result) => {

@@ -9,6 +9,8 @@ CREATE TABLE users(
     account_type VARCHAR(255)
 );
 
+INSERT INTO users(first_name, last_name, phone_number, username, account_type) VALUES ('Freddy', 'Kouakou', '+123456789', 'fkouakou', 'admin');
+
 CREATE TABLE answers(
     id SERIAL PRIMARY KEY,
     question_number INT,
@@ -27,13 +29,5 @@ CREATE TABLE quizzes(
     id SERIAL PRIMARY KEY,
     quiz INT,
     submit BOOLEAN
-);
-
-CREATE TABLE user_responses(
-    id SERIAL PRIMARY KEY,
-    response VARCHAR(255),
-    question_number INT,
-    quiz INT,
-    user_id INT REFERENCES users
 );
 
