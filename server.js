@@ -57,14 +57,25 @@ app.post("/createAccount", (req, res) => {
             bcrypt.hash(password, 10, function (err, hash) {
                 var userInfo = [firstName, lastName, username, phoneNumber, hash, currentWeek, accountType];
                 // Store hash in database
-                var insertIntodb = "INSERT INTO users(first_name, last_name, username, phone_number, password_hash, current_week, account_type) VALUES($1, $2, $3, $4, $5, $6, $7) " //This insert the user's data in the variable $1...5 in the query
+                var insertIntodb = "INSERT INTO users(first_name, last_name, username, phone_number, password_hash, current_week, account_type) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id" //This insert the user's data in the variable $1...5 in the query
                 pool.query(insertIntodb, userInfo, (err, result) => {
 
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        res.send({success: true})
+                    var sql = "INSERT INTO grades(grade, quiz, user_id) VALUES";
+                    for (let i = 1; i <= 14; i++) {
+                        sql += " (0, " + i + ", " + result.rows[0].id + ")";
+                        if (i < 14) {
+                            sql += ",";
+                        } else {
+                            sql += ";";
+                        }
                     }
+                    pool.query(sql, (err) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.send({success: true});
+                        }
+                    });
                 });
 
             });
