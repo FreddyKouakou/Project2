@@ -37,8 +37,8 @@ const auth = function(req, res, next) {
 }
 
 //statics files path
-// app.use(express.static("public"))
-app.use(express.static(__dirname + '/public'));
+app.use(express.static("public"))
+// app.use(express.static(__dirname + '/public'));
 
 app.post("/createAccount", (req, res) => {
     var firstName = req.body.firstName;
