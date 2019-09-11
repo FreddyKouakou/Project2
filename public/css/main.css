@@ -20,9 +20,72 @@ h1{
     background-color: green;
 }
 
-#signin {
+#englishConnect {
+    width: 100%;
+}
+
+#signin, #signout {
     float: right;
     border-left: 1px solid rgba(0,0,0,0.3);
+}
+
+#welcome {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 50px;
+    padding: 15px;
+}
+
+#dotsButton {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background-color: orange;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+}
+
+#dotsButton a {
+    font-size: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+#dotsButton a:hover {
+    color: white;
+}
+
+#dotsMenu {
+    position: fixed;
+    top: 40px;
+    right: 0px;
+    z-index: 2;
+    display: none;
+}
+
+#dotsMenu li {
+    display: block;
+    float: none;
+    background-color: orange;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+
+#dotsMenu a {
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    margin: 0;
+}
+
+#dotsMenu li:hover {
+    background-color: green;
 }
 
 nav ul li a:hover{
@@ -47,7 +110,7 @@ nav ul li a:hover{
 .heading {
     background-image: linear-gradient(to right, green, white);
     padding: 50px;
-    margin-top: 30px;
+    margin-top: 80px;
     color: black;
 }
 

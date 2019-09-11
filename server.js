@@ -26,13 +26,13 @@ const pool = new Pool({ connectionString: dbUrl });
 
 // middleware to check login
 const auth = function(req, res, next) {
-    req.session.userId = 1;
-    req.session.currentWeek = 14;
-    req.session.accountType = "admin";
+    // req.session.userId = 1;
+    // req.session.currentWeek = 14;
+    // req.session.accountType = "admin";
     if (req.session.userId) {
         next();
     } else {
-        res.render("index.ejs", {page: "signin"});
+        res.render("index.ejs", {page: "signin", firstName: req.session.firstName});
     }
 }
 
@@ -84,7 +84,7 @@ app.post("/signin", (req, res) => {
     var userSignIn = req.body.userName;
     var userPassWord = req.body.userPassWord;
     var userInfoArray = [userSignIn];
-    pool.query("SELECT id, password_hash, current_week, account_type FROM users WHERE username = $1", userInfoArray, (err, result) => {
+    pool.query("SELECT id, first_name, password_hash, current_week, account_type FROM users WHERE username = $1", userInfoArray, (err, result) => {
         if (err) {
             console.log("Error getting the user name" + err)
 
@@ -96,6 +96,7 @@ app.post("/signin", (req, res) => {
                     if (resMatch) {
                         // Passwords match
                         req.session.userId = result.rows[0].id;
+                        req.session.firstName = result.rows[0].first_name;
                         req.session.currentWeek = result.rows[0].current_week;
                         req.session.accountType = result.rows[0].account_type;
                         res.send({match: true});
@@ -111,6 +112,11 @@ app.post("/signin", (req, res) => {
         }
     });
 
+});
+
+app.get('/signout', (req, res) => {
+    req.session.destroy();
+    res.render("index.ejs", {page: "signin", firstName: null});
 });
 
 app.post('/updatePassword', (req, res) => {
@@ -130,41 +136,33 @@ app.post('/updatePassword', (req, res) => {
 });
 
 app.get('/changePassword', auth, (req, res) => {
-    res.render('index.ejs', {page: "changePassword"})
+    res.render('index.ejs', {page: "changePassword", firstName: req.session.firstName})
 });
 
 app.get('/', (req, res) => {
-    res.render('index.ejs', {page: "homepage"});
-});
-
-app.get('/about', (req, res) => {
-    res.render('index.ejs', {page: "about"});
-});
-
-app.get('/contact', (req, res) => {
-    res.render('index.ejs', {page: "contact"});
+    res.render('index.ejs', {page: "homepage", firstName: req.session.firstName});
 });
 
 app.get('/lesson', auth, (req, res) => {
-    res.render('index.ejs', {page: "lessons", currentWeek: req.session.currentWeek});
+    res.render('index.ejs', {page: "lessons", currentWeek: req.session.currentWeek, firstName: req.session.firstName});
 });
 
 app.get('/home', (req, res) => {
-    res.render('index.ejs', {page: "homepage"});
+    res.render('index.ejs', {page: "homepage", firstName: req.session.firstName});
 });
 
 app.get('/signin', (req, res) => {
-    res.render('index.ejs', {page: "signin"});
+    res.render('index.ejs', {page: "signin", firstName: req.session.firstName});
 });
 
 app.get('/admin', (req, res) => {
     if (req.session.accountType == "admin") {
         var sql = "SELECT first_name, last_name, username, phone_number, account_type FROM users";
         pool.query(sql, (err, result) => {
-            res.render('index.ejs', {page: "admin", users: result.rows});
+            res.render('index.ejs', {page: "admin", users: result.rows, firstName: req.session.firstName});
         });
     } else {
-        res.render('index.ejs', {page: "signin"});
+        res.render('index.ejs', {page: "signin", firstName: req.session.firstName});
     }
     
     
@@ -172,15 +170,14 @@ app.get('/admin', (req, res) => {
 
 app.get('/quiz', (req, res) => {
     var quiz = req.query.qn;
-    res.render('index.ejs', {page: "quiz/quiz" + quiz});
+    res.render('index.ejs', {page: "quiz/quiz" + quiz, firstName: req.session.firstName});
 });
 
 app.get('/grades', auth, (req, res) => {
-    var userId = 1; // change to session
-    var values = [userId];
+    var values = [req.session.userId];
     var sql = "SELECT grade FROM grades WHERE user_id=$1 ORDER BY quiz";
     pool.query(sql, values, function(err, result) {
-        res.render('index.ejs', {page: "grades", grades: result.rows, currentWeek: req.session.currentWeek});
+        res.render('index.ejs', {page: "grades", grades: result.rows, currentWeek: req.session.currentWeek, firstName: req.session.firstName});
     });
     
 });

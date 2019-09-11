@@ -1,3 +1,23 @@
+<%
+  var lessons = "<li id='lessons'><a href='lesson'>Lessons</a></li>";
+  var gradesTab = "<li id='grades'><a href='grades'>Grades</a></li>";
+  var welcome = "<p id='welcome'>Welcome " + firstName + "!</p>";
+  var changePassword = "<li id='changePassword'><a href='changePassword'>Change Password</a></li>";
+  var signout = "<li id='signout'><a href='signout'>Sign out <i class='fa fa-sign-out'></i></a></li>";
+  var signin = "<li id='signin'><a href='signin'>Sign in <i class='fa fa-sign-in'></i></a></li>";
+  var dotsButton = "<button id='dotsButton' onclick='toggleDotsMenu()''><a href='javascript:void(0);''><i class='fa fa-ellipsis-v'></i></a></button>"
+  var dotsMenu =  "<ul id='dotsMenu'>" + signout + changePassword + "</ul>";
+
+  var menu = "";
+  if (firstName == null) {
+      menu += signin;
+      dotsButton = "";
+      dotsMenu = "";
+  } else {
+      menu += lessons + gradesTab + welcome;
+  }
+%>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,15 +38,16 @@
   <body>
     <header>
       <nav class="clearfix">
-        <button onclick="menu();">&#9776;</button>
+        <button onclick="toggleHamburgerMenu();">&#9776;</button>
+        <div id='homepage'><a href='home'><img src='images/logo.jpg'></a></div>
         <ul id="primaryNav" class="hide">
-          <li id="homepage"><a href="home"><img src="images/logo.jpg"></a></li>
-          <li id="lessons"><a href="lesson">Lessons</a></li>
-          <li id="grades"><a href="grades">Grades</a></li>
-          <li id="changePassword"><a href="changePassword">Change Password</a></li>
-          <li id="signin"><a href="signin">Sign in <i class="fa fa-sign-in"></i></a></li>
+          
+
+          <%-menu %>
         </ul>
       </nav>
+      <%-dotsButton %>
+      <%-dotsMenu %>
     </header>
     <main>
     <%- include(page + ".ejs"); %>

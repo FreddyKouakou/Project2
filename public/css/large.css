@@ -2,19 +2,40 @@
     nav button{
         display: none;
     }
-    
+
+    #homepage {
+        
+    }
+
+    nav { 
+        display: block;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        background-color: orange;
+        width: 100%;
+        display: none;
+    }
+
+    nav ul {
+        padding: 0;
+    }
+
+    #heading {
+        margin-top: 50px;
+    }
     
     nav ul li {
-        float: left;
-    }
-    nav ul.hide{
         display: block;
+        float: left;
+        list-style-type: none;
     }
     
     nav ul li a {
+        display: block;
         border:none;
         border-right: 1px solid rgba(0, 0, 0, .3);
-        padding: 18px 15px;
+        
     }
     
 

@@ -1,39 +1,34 @@
-html{-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
-*{-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
-
+@media only screen and (max-width: 749px) {
 nav button{
-    margin: .2rem 2%;
+    height: 56px;
+    font-size: 30px;
+    padding: 0px 10px;
     background-color: transparent;
-    border: none;
-    font-size: 1.6rem;
-    color: #fff;
+}
+
+#homepage {
+    display: none;
 }
 
 nav{
     background-color: orange;
     font-family: Verdana, sans-serif;
 }
-nav ul{
-    list-style-type: none;
-    padding: 0;
+
+nav ul {
     margin: 0;
-}
-nav ul li a{
-    display: block;
-    padding: .8rem 2%;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.8);
-    border-top: 1px solid rgba(0, 0, 0, .3)
-}
-nav ul li.active a{
-    background-color: green;
-    color: #fff;
+    padding: 0;
 }
 
-nav ul.hide{display: none;
+nav ul li {
+    display: block;
+    border-top: 1px solid rgba(0,0,0,0.3)
 }
-.clearfix:after{
-    content: "";
-    display: table;
-    clear: both;
+
+nav ul a {
+    display: block;
+    width: 100%;
+    padding: 15px;
+}
+
 }

@@ -81,3 +81,11 @@ function checkLogin(){
          }
      });
  }
+
+ function toggleHamburgerMenu() {
+     $("#primaryNav").toggle();
+ }
+
+ function toggleDotsMenu() {
+     $("#dotsMenu").toggle();
+ }
