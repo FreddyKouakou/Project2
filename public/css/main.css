@@ -305,10 +305,6 @@ select {
     padding: 0;
 }
 
-#deleteButton {
-    border: none;
-}
-
 #accountsTable {
     border-right: none;
 }

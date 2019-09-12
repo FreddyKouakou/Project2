@@ -1,7 +1,6 @@
 
 <table id="accountsTable">
 <tr>
-  <th></th>
   <th>Name</th>
   <th class>username</th>
   <th class="optional">Phone Number</th>
@@ -10,7 +9,6 @@
 <% for (let i = 0; i < users.length; i++) { %>
 
 <tr>
-    <td id="deleteButton"><button><i class="fa fa-times"></i></button></td>
   <td><%=users[i].first_name %> <%=users[i].last_name %></td>
   <td><%=users[i].username %></td>
   <td class="optional"><%=users[i].phone_number %></td>
