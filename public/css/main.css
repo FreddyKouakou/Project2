@@ -127,6 +127,20 @@ nav ul li a:hover{
     
 }
 
+#accountsTable {
+    width: 100%;
+}
+
+#accountsTable th {
+    font-size: 15px;
+    padding: 20px 5px
+}
+
+#accountsTable td {
+    font-size: 15px;
+    padding: 20px 5px;
+}
+
 #gradesTable {
     width: 100%;
 }
@@ -151,6 +165,7 @@ form{
     border-radius: 3px
 }
 fieldset{
+    max-width: 800px;
     border-radius: 10px;
     position: relative;
 }
@@ -175,7 +190,6 @@ select{
     border-radius: 4px;
     padding: 10rem;
     background-color: whitesmoke;
-    width: 100%;
     max-width: 20rem;  
 }
 #submitBtn{
@@ -289,4 +303,20 @@ textarea {
 
 select {
     padding: 0;
+}
+
+#deleteButton {
+    border: none;
+}
+
+#accountsTable {
+    border-right: none;
+}
+
+#accountsTable button {
+    font-size: 30px;
+    background-color: lightblue;
+    border-radius: 50%;
+    margin: 0;
+    float: right;
 }

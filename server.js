@@ -169,7 +169,7 @@ app.get('/signin', (req, res) => {
 
 app.get('/admin', auth, (req, res) => {
     if (req.session.accountType == "admin") {
-        var sql = "SELECT first_name, last_name, username, phone_number, account_type FROM users";
+        var sql = "SELECT first_name, last_name, username, phone_number, account_type FROM users ORDER BY account_type, last_name, first_name";
         pool.query(sql, (err, result) => {
             res.render('index.ejs', {page: "admin", users: result.rows, firstName: req.session.firstName});
         });

@@ -68,12 +68,13 @@
   }
 %>
 <script>
-  if (<%=page %> != "admin") {
+  if ("<%=page %>" != "admin") {
       $("#<%=page %>").addClass("active");
   }
 
   if ("<%=signedIn %>" == "f") {
       $("#homepage").css("left", "0");
+      $("#primaryNav").css("display", "block");
   }
 
 </script>

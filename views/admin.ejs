@@ -1,20 +1,20 @@
 
-<table>
+<table id="accountsTable">
 <tr>
-  <th>First Name</th>
-  <th>Last Name</th>
-  <th>username</th>
-  <th>Phone Number</th>
-  <th>Account Type</th>
+  <th></th>
+  <th>Name</th>
+  <th class>username</th>
+  <th class="optional">Phone Number</th>
+  <th class="optional">Account Type</th>
 <tr>
 <% for (let i = 0; i < users.length; i++) { %>
 
 <tr>
-  <td><%=users[i].first_name %></td>
-  <td><%=users[i].last_name %></td>
+    <td id="deleteButton"><button><i class="fa fa-times"></i></button></td>
+  <td><%=users[i].first_name %> <%=users[i].last_name %></td>
   <td><%=users[i].username %></td>
-  <td><%=users[i].phone_number %></td>
-  <td><%=users[i].account_type %></td>
+  <td class="optional"><%=users[i].phone_number %></td>
+  <td class="optional"><%=users[i].account_type %></td>
 </tr>
 <% } %>
 </table>
