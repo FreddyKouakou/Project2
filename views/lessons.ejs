@@ -2,12 +2,12 @@
   var videoLinks = ["", "", "", "", "", "", "", "", "", "", "", "", "", "https://www.youtube.com/watch?v=naqX9iYE0V0"];
 %>
 
-<h1>Lessons</h1>
+<h1>LESSONS</h1>
 <table id="lessonstable">
   <% for (let i = 1; i <= currentWeek; i++) { %>
   <tr>
     <td>Week <%=i %></td>
-    <td><a href="pdf/week<%=i %>.pdf">Reading</a></td>
+    <td><a href="https://docs.google.com/viewerng/viewer?url=http://english-pro.herokuapp.com/pdf/week<%=i %>.pdf">Reading</a></td>
     <td><a href="<%=videoLinks[i - 1] %>">Video</a></td>
     <td><a href="quiz?qn=<%=i %>">Quiz</a></td>
   </tr>
