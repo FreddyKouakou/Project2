@@ -294,6 +294,7 @@ textarea {
 #lessonstable td {
     border: none;
     padding: 20px 5px;
+    font-size: 20px;
 }
 
 #lessonstable a:hover {
