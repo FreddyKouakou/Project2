@@ -6,8 +6,9 @@ body {
 nav button{
     height: 56px;
     font-size: 30px;
-    padding: 0px 10px;
+    padding: 0px 13px;
     background-color: transparent;
+    border: none;
 }
 
 #homepage {
@@ -60,6 +61,15 @@ nav ul a {
 
 select {
     padding: 15px 5px;
+}
+
+}
+
+@media only screen and (max-width: 359px) {
+
+#homepage img {
+    width: 200px;
+    height: 48px;
 }
 
 }

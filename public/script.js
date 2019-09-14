@@ -89,3 +89,7 @@ function checkLogin(){
  function toggleDotsMenu() {
      $("#dotsMenu").toggle();
  }
+
+ function hideHamburgerMenu() {
+     $("#primaryNav").hide();
+ }

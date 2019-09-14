@@ -202,7 +202,9 @@ select{
     padding: .75rem;
     background-color: royalblue;
     width: 35%;
-    max-width: 10rem;  
+    max-width: 10rem;
+    display: block;
+    margin-top: 20px;  
 }
 p{
     color: #000;
@@ -235,7 +237,9 @@ p{
 
 #footer
 {
-    padding: 2em;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
     color: #fff;
     background: orange;
     text-align: center;
@@ -321,12 +325,26 @@ select {
     float: right;
 }
 
-#whatsapp {
+#contact {
+    padding-left: 0;
+    padding-bottom: 5px;
+}
+
+#contact li {
     font-size: 50px;
     float: left;
     list-style-type: none;
 }
 
-#whatsapp i {
+#contact i {
     color: green;
+}
+
+.small {
+    width: 50px;
+    display: inline;
+}
+
+.quizTable img {
+    width: 100px;
 }
